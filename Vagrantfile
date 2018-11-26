@@ -68,7 +68,7 @@ Vagrant.configure("2") do |config|
   #   apt-get install -y apache2
   # SHELL
   config.vm.synced_folder ".", "/home/vagrant/code",
-  type: "nfs",
-  nfs_version: 4,
-  nfs_udp: false
+  #type: "nfs",
+  #nfs_version: 4,
+  #nfs_udp: false
 end
