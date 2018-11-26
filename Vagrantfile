@@ -67,4 +67,8 @@ Vagrant.configure("2") do |config|
   #   apt-get update
   #   apt-get install -y apache2
   # SHELL
+  config.vm.synced_folder "C:/ipt/esoft/EsoftProject", "/home/vagrant/code",
+  type: "nfs",
+  nfs_version: 4,
+  nfs_udp: false
 end
