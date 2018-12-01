@@ -1,4 +1,9 @@
 class UsersController < ApplicationController
+    
+    def indexLogSensor
+     render "home/indexLogSensor"
+    end
+    
     def new
     end
     
