@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_01_002503) do
+ActiveRecord::Schema.define(version: 2018_12_01_120927) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "btree_gin"
@@ -36,6 +36,13 @@ ActiveRecord::Schema.define(version: 2018_12_01_002503) do
   enable_extension "unaccent"
   enable_extension "uuid-ossp"
   enable_extension "xml2"
+
+  create_table "groups", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "sensor_histories", force: :cascade do |t|
     t.integer "value"
