@@ -49,9 +49,8 @@ class UsersController < ApplicationController
     end
 
     def index
-      @users= User.all
-       @title = 'Shattered View: A Novel on Rails'
-    render 'users/index',
+      @users = User.all
+    
     end
 
 end
