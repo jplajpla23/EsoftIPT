@@ -42,12 +42,16 @@ class UsersController < ApplicationController
     end
     
     def show
+
     end
     
     def edit
     end
 
     def index
+      @users= User.all
+       @title = 'Shattered View: A Novel on Rails'
+    render 'users/index',
     end
 
 end
