@@ -1,0 +1,19 @@
+<h1>Listing Sensor History</h1>
+
+<Table>
+    <tr>
+        <th>Sensor id</th>
+        <th>Valor</th>
+        <th>Tempo</th>
+        <th>Sensor History Col</th>
+    </tr>
+
+    <% @sensor_historys.each do |history| %>
+        <tr>
+            <td><%= history.sensors_idsensors %></td>
+            <td><%= history.value %></td>
+            <td><%= history.time %></td>
+            <td><%= history.sensors_historycol %></td>
+        </tr>
+    <% end %>
+</Table>
