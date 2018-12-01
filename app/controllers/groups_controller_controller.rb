@@ -1,4 +1,5 @@
-class GroupsControllerController < ApplicationController
+class GroupsController < ApplicationController
+	
 	def show
 		# mostrar um grupo
 		@group=Group.find(params[:id])
