@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  sensors_idsensors: 
+  message: MyString
+  min: 1.5
+  max: 1.5
+  crated_at: 2018-12-01 13:29:14
+  updated_at: 2018-12-01 13:29:14
+
+two:
+  sensors_idsensors: 
+  message: MyString
+  min: 1.5
+  max: 1.5
+  crated_at: 2018-12-01 13:29:14
+  updated_at: 2018-12-01 13:29:14
