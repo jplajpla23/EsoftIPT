@@ -35,6 +35,6 @@ class SensorHistorysController < ApplicationController
 
     private
     def sensor_history_params
-        params.require(:sensor_history).permit(:sensors_idsensors, :value, :time, :sensors_historycol)
+        params.require(:sensor_history).permit(:sensors_id, :value, :time)
     end
 end
