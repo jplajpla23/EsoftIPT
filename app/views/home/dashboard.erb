@@ -1,0 +1,158 @@
+<div class="container" style=" border: 2px solid #fff; border-radius: 5px;background-color: #fff;margin-top: 10px;">
+	<center>
+		<h2>Dashboard</h2>
+		<br>
+
+	</center>
+	 <center><div id="chart_div" style="border: 1px solid #ccc;width: 410px;"></div></center>
+	 <hr><div>
+	 	<center><h3>Last Readings</h3></center> 
+	 	<br>
+	 	<table class="dataTable">
+	 		<thead>
+	 			<tr>
+					<th>Sensor Description</th>
+					<th>Group</th>
+					<th>Last Value</th>
+					<th>At</th>
+				</tr>
+	 		</thead>
+	 		<tbody>
+	 			<tr>
+	 				<td>exemplo</td>
+	 				<td>Group1</td>
+	 				<td>123456</td>
+	 				<td>2018-12-2</td>
+	 			</tr>
+	 			<tr>
+	 				<td>exemplo</td>
+	 				<td>Group1</td>
+	 				<td>12</td>
+	 				<td>2018-12-2</td>
+	 			</tr>
+	 			<tr>
+	 				<td>exemplo</td>
+	 				<td>Group2</td>
+	 				<td>12345623</td>
+	 				<td>2018-12-2</td>
+	 			</tr>
+	 		</tbody>
+	 	</table>
+	 </div>
+	<br>
+	
+</div>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+
+      // Load the Visualization API and the corechart package.
+      google.charts.load('current', {'packages':['corechart']});
+
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.charts.setOnLoadCallback(drawChart);
+
+      // Callback that creates and populates a data table,
+      // instantiates the pie chart, passes in the data and
+      // draws it.
+      function drawChart() {
+
+        // Create the data table.
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Topping');
+        data.addColumn('number', 'Slices');
+        data.addRows([
+          ['adicionar aqui os grupos', 3],
+          ['-', 1],
+          ['-', 1],
+          ['-', 1],
+          ['Sem grupo', 2]
+        ]);
+
+        // Set chart options
+        var options = {'title':'Sensors By Group',
+                       'width':400,
+                       'height':300};
+
+        // Instantiate and draw our chart, passing in some options.
+        var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+    </script>
+
+<script type="text/javascript">
+    var jQuery_2 = $.noConflict(true);
+</script>
+<script src="/js/dataTables.rowGroup.min.js"></script>
+<script src="/js/rowGroup.jqueryui.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    a=document.getElementsByClassName('datasValidade');
+    for (i=0;i<a.length;i++){
+        if(a[i].innerText!="--")
+        {
+            date1 = new Date();
+            date2 = new Date( a[i].innerText );
+            if(date2<=date1)
+            {
+                a[i].style.color="#cc3333";
+            }
+        }
+        if(a[i].parentNode.children[7].getAttribute('data-val')<=0)
+        {
+            a[i].parentNode.style.opacity="0.4";
+        }
+    }
+    $('.dataTable').DataTable({
+        "lengthMenu": [[ 5, 10, 15, 25, 50, -1], [5, 10, 15, 25, 50, "All"]],
+        "pageLength": 15,
+        "autoWidth": true,
+        "rowGroup": {
+            startRender: function ( rows, group ) {
+                 /* var count = rows
+                        .data()
+                        .pluck(7)
+                        .reduce( function (a, b) {
+                            return parseFloat(a) + parseFloat(b);
+                        }, 0);*/ //funçao que conta a qantidade disponivel conta os valores da tabela
+                        
+                return group;
+            },
+            endRender: null,
+            "dataSrc": 1,
+        },
+        "ordering": true,
+         "orderFixed": {
+        "pre":  [[ 1, 'asc' ]]
+    },
+        "columnDefs": [
+        {
+            "targets": [1],
+            "visible": false
+        }],
+        "pagingType": "full_numbers",
+        "bInfo" : true
+    });
+    
+
+} );
+</script>
+<style>
+    table.dataTable tr.dtrg-group td{font-weight:bold;background-color:#e0e0e0}
+   
+    table.dataTable thead .sorting,
+    table.dataTable thead .sorting_asc,
+    table.dataTable thead .sorting_desc,
+    table.dataTable thead .sorting_asc_disabled,
+    table.dataTable thead .sorting_desc_disabled {
+        cursor: pointer;
+        *cursor: hand;
+        background-repeat: no-repeat;
+        background-position: center left;
+    }
+    .dataTables_wrapper .dataTables_paginate .paginate_button {
+    margin-bottom: 60px;
+    }
+    
+</style>
