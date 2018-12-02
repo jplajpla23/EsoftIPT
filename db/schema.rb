@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 2018_12_01_120927) do
   end
 
   create_table "sensor_histories", force: :cascade do |t|
-    t.integer "value"
+    t.float "value"
     t.datetime "time"
     t.string "sensors_historycol"
     t.bigint "sensors_id"
@@ -58,13 +58,14 @@ ActiveRecord::Schema.define(version: 2018_12_01_120927) do
     t.integer "idusers"
     t.string "sensor_desc"
     t.string "mac"
-    t.integer "max"
-    t.integer "min"
+    t.float "max"
+    t.float "min"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
+    t.integer "role"
     t.string "name"
     t.string "email"
     t.string "password"

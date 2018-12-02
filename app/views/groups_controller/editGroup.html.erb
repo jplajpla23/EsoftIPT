@@ -1,0 +1,17 @@
+<div class="container" style=" border: 2px solid #fff; border-radius: 5px;background-color: #fff;margin-top: 10px;">
+	<center>
+		<h2>Edit Group - <%= @group.description %></h2>
+		<br></center>
+		<form method="POST" action="<%= editGroupPost_path %>">
+			<%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+			<input type="hidden" name="id" value="<%= @group.id%>">
+			<div class="form-group">
+				<center><label for="desc">New Description</label></center><input required type="text" class="form-control" name="desc" value="<%= @group.description%>"><br>
+				<input class="btn btn-success" type="submit" value="Update" style="padding: 5px!important;margin: 1px!important;">
+			</div>
+		</form>
+	
+	
+	
+	<br>
+</div>
