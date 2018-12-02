@@ -88,23 +88,7 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
-    a=document.getElementsByClassName('datasValidade');
-    for (i=0;i<a.length;i++){
-        if(a[i].innerText!="--")
-        {
-            date1 = new Date();
-            date2 = new Date( a[i].innerText );
-            if(date2<=date1)
-            {
-                a[i].style.color="#cc3333";
-            }
-        }
-        if(a[i].parentNode.children[7].getAttribute('data-val')<=0)
-        {
-            a[i].parentNode.style.opacity="0.4";
-        }
-    }
-    $('.dataTable').DataTable({
+        $('.dataTable').DataTable({
         "lengthMenu": [[ 5, 10, 15, 25, 50, -1], [5, 10, 15, 25, 50, "All"]],
         "pageLength": 15,
         "autoWidth": true,
