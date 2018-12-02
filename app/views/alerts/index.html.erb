@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Alerts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Sensor idsensors</th>
+      <th>Message</th>
+      <th>Min</th>
+      <th>Max</th>
+      <th>Created at</th>
+      <th>Updated at</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @alerts.each do |alert| %>
+      <tr>
+        <td><%= alert.sensor_idsensors %></td>
+        <td><%= alert.message %></td>
+        <td><%= alert.min %></td>
+        <td><%= alert.max %></td>
+        <td><%= alert.created_at %></td>
+        <td><%= alert.updated_at %></td>
+        <td><%= link_to 'Show', alert %></td>
+        <td><%= link_to 'Edit', edit_alert_path(alert) %></td>
+        <td><%= link_to 'Destroy', alert, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Alert', new_alert_path %>

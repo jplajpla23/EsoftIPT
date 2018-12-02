@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Sensor idsensors:</strong>
+  <%= @alert.sensor_idsensors %>
+</p>
+
+<p>
+  <strong>Message:</strong>
+  <%= @alert.message %>
+</p>
+
+<p>
+  <strong>Min:</strong>
+  <%= @alert.min %>
+</p>
+
+<p>
+  <strong>Max:</strong>
+  <%= @alert.max %>
+</p>
+
+<p>
+  <strong>Created at:</strong>
+  <%= @alert.created_at %>
+</p>
+
+<p>
+  <strong>Updated at:</strong>
+  <%= @alert.updated_at %>
+</p>
+
+<%= link_to 'Edit', edit_alert_path(@alert) %> |
+<%= link_to 'Back', alerts_path %>
