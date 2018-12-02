@@ -1,0 +1,112 @@
+<div class="container" style=" border: 2px solid #fff; border-radius: 5px;background-color: #fff;margin-top: 10px;">
+	<center>
+		<h2>My Alerts</h2>
+		<br>
+    <div style="float: right!important;">
+    <a class="btn btn-warning" onclick="showformCreate();" style="margin:0px!important;padding: 5px!important;text-transform: none!important;"><i class="fas fa-plus"></i> New</a>
+    <br>
+    <br>
+    
+  </div>
+    <table class="dataTable">
+      <thead>
+        <tr>
+          <th>Sensor Description</th>
+          <th>Message</th>
+          <th>Min</th>
+          <th>Max</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td></td>
+          <td>Messagem que envia</td>
+          <td>1</td>
+          <td>2</td>
+          <td><form method="POST" action="<%= deleteAlert_path %>">
+              <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+              <input type="hidden" name="id" value="-1">
+              <a onclick="sub(this);" class="btn btn-danger" style="    color: white;margin:0px!important;padding: 5px!important;text-transform: none!important;"><i class="fas fa-trash-alt"></i> Delete</a> 
+              <a href="<%=myAlertsEdit_path(-1)%>" class="btn btn-success" style="margin:0px!important;padding: 5px!important;text-transform: none!important;"><i class="fas fa-pencil-alt"></i> Edit</a>
+            </form></td>
+        </tr>
+      </tbody>
+    </table>
+	</center>
+	 
+
+</div>
+
+
+<script type="text/javascript">
+    var jQuery_2 = $.noConflict(true);
+</script>
+<script src="/js/dataTables.rowGroup.min.js"></script>
+<script src="/js/rowGroup.jqueryui.min.js"></script>
+
+<script type="text/javascript">
+  function sub($this)
+  {
+    var r = confirm("Are you sure?");
+    if (r == true) {
+      $this.parentNode.submit();
+      
+    } else {
+
+    }
+
+  }
+$(document).ready(function() {
+    $('.dataTable').DataTable({
+        "lengthMenu": [[ 5, 10, 15, 25, 50, -1], [5, 10, 15, 25, 50, "All"]],
+        "pageLength": 15,
+        "autoWidth": true,
+        "rowGroup": {
+            startRender: function ( rows, group ) {
+                 /* var count = rows
+                        .data()
+                        .pluck(7)
+                        .reduce( function (a, b) {
+                            return parseFloat(a) + parseFloat(b);
+                        }, 0);*/ //funçao que conta a qantidade disponivel conta os valores da tabela
+                        
+                return group;
+            },
+            endRender: null,
+            "dataSrc": 0,
+        },
+        "ordering": true,
+         "orderFixed": {
+        "pre":  [[ 1, 'asc' ]]
+    },
+        "columnDefs": [
+        {
+            "targets": [0],
+            "visible": false
+        }],
+        "pagingType": "full_numbers",
+        "bInfo" : true
+    });
+    
+
+} );
+</script>
+<style>
+    table.dataTable tr.dtrg-group td{font-weight:bold;background-color:#e0e0e0}
+   
+    table.dataTable thead .sorting,
+    table.dataTable thead .sorting_asc,
+    table.dataTable thead .sorting_desc,
+    table.dataTable thead .sorting_asc_disabled,
+    table.dataTable thead .sorting_desc_disabled {
+        cursor: pointer;
+        *cursor: hand;
+        background-repeat: no-repeat;
+        background-position: center left;
+    }
+    .dataTables_wrapper .dataTables_paginate .paginate_button {
+    margin-bottom: 60px;
+    }
+    
+</style>

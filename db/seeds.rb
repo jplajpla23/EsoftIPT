@@ -5,3 +5,18 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+   
+
+    User.create(name: 'admin',role: 1, email:'admin@sample.pt', password:'123456', remember_token:'sdfs')
+
+3.times do |i|
+	g = Group.create(user_id: 1, description:"Group Das Seeds");
+end
+
+
+5.times do |i|
+   sen = Sensor.create(idusers: 1, sensor_desc: 'temp_Seed', mac: '00:00:00:00:00', max: 80, min: 0)
+   SensorHistory.create(value: i*2, time: Time.now, sensors_id:sen.id )
+end
+

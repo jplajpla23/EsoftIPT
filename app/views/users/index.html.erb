@@ -1,0 +1,55 @@
+<div class="container" style=" border: 2px solid #fff; border-radius: 5px;background-color: #fff;margin-top: 10px;">
+	<center>
+		<h2>Users Manager</h2>
+		<br>
+
+	</center>
+	<div style="float: right!important;">
+		<a class="btn btn-warning" style="margin:0px!important;padding: 5px!important;text-transform: none!important;"><i class="fas fa-users"></i> New</a>
+		<br>
+		<br>
+	</div>
+	<table id="example" class="display" style="width:100%"> 
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Email</th>
+				<th>Role</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+
+			<% @users.each do |user| %>
+			<tr>
+				<td><%= user.name %></td>
+				<td><%= user.email %></td>
+				<td><% if user.role == 1 %>
+					Admin User
+					<% else %>
+					Regular User
+					<% end %></td>
+					<td>
+						<a class="btn btn-danger" style="  color: white;margin:0px!important;padding: 5px!important;text-transform: none!important;"><i class="fas fa-trash-alt"></i> Delete</a>
+						<a class="btn btn-success" style="  color: white;margin:0px!important;padding: 5px!important;text-transform: none!important;"><i class="fas fa-pencil-alt"></i> Edit</a>
+					</td>
+				</tr>
+				<% end %>
+
+
+
+
+
+
+			</tbody>
+		</table>
+		<br>
+	</div>
+<script type="text/javascript">
+    var jQuery_2 = $.noConflict(true);
+</script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#example').DataTable();
+		} );
+	</script>

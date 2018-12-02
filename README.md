@@ -1,24 +1,46 @@
-# README
+# LogSensor
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
 
-* Ruby version
+A openSource-platform to configure SMTP alerts from any sensor.
 
-* System dependencies
+  - Open-source
+  - Compatible with all sensor, sensor only need send HTTP Request to API
+  - Configure STMP Alerts
+  - Possibility of Group Sensors
+  - Dashboard 
+  - ...
 
-* Configuration
+# New Features!
 
-* Database creation
+  - Not Yet
 
-* Database initialization
 
-* How to run the test suite
+### FrameWork
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
 
-* ...
+* [Ruby on Rails] - HTML enhanced for web apps!
+
+### Installation
+
+LogSensor requires vagrant to run.
+    -vagrant box add jadesystems/rails-5-2
+
+### Plugins
+| Plugin | Link |
+| ------ | ------ |
+| Bootstrap | https://getbootstrap.com/ |
+| DataTables | https://datatables.net/ |
+
+
+
+### Development Team
+
+    João Agostinho - https://github.com/jplajpla23s
+    João Grácio - https://github.com/joaogracio
+    António Paiva - https://github.com/bertilpaiva
+    Nelson Amaral - https://github.com/supercop185
+    Tiago Santana - https://github.com/Santanix
+    Nuno Cardoso - https://github.com/nunokisc
