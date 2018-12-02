@@ -1,0 +1,97 @@
+<div class="container" style=" border: 2px solid #fff; border-radius: 5px;background-color: #fff;margin-top: 10px;">
+	<center>
+		<h2>My Groups</h2>
+		<br>
+
+	</center>
+	<div style="float: right!important;">
+		<a class="btn btn-warning" onclick="showformCreate();" style="margin:0px!important;padding: 5px!important;text-transform: none!important;"><i class="fas fa-plus"></i> New</a>
+		<br>
+		<br>
+		
+	</div>
+	<div  style="width: 60%" >
+		
+		<form id="form_new" method="POST" action="<%= saveNewGroup_path %>" style="display:none!important;">
+			<%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+
+			<div class="form-group">
+				<label for="desc">Description</label><input required type="text" class="form-control" name="desc">
+			</div>
+			<input class="btn btn-outline-warning" type="submit" value="Create" style="padding: 5px!important;margin: 1px!important;">
+			<a class="btn btn-outline-darkk" style="padding: 5px!important;margin: 1px!important;" onmouseover="hover(this);" onmouseout="out(this)" onclick="cancel()">Cancel</a>
+		</form>
+	</div><br>
+	<div id="table">
+		<table id="example" class="display" style="width:100%"> 
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Sensor in Group</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @groups.each do |group| %>
+				<tr>
+					<td><%= group.description %></td>
+					<td>-</td>
+					<td>
+
+						<!-- trocar o if para depois so dar para eliminar o groupo se nao houver sensores associados-->
+						<% if 0==0 %>
+						<form method="POST" action="<%= deleteGroup_path %>">
+							<%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+							<input type="hidden" name="id" value="<%= group.id%>">
+							<a onclick="sub(this);" class="btn btn-danger" style="    color: white;margin:0px!important;padding: 5px!important;text-transform: none!important;"><i class="fas fa-trash-alt"></i> Delete</a> 
+							<a href="<%= editGroup_path(group.id) %>" class="btn btn-success" style="margin:0px!important;padding: 5px!important;text-transform: none!important;"><i class="fas fa-pencil-alt"></i> Edit</a>
+						<% end %>
+						</form>
+						
+
+
+						
+					</td>
+				</tr>
+				<% end %>
+
+			</tbody>
+		</table>
+	</div>
+	<br>
+</div>
+<script type="text/javascript">
+    var jQuery_2 = $.noConflict(true);
+</script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#example').DataTable();
+	} );
+	function showformCreate()
+	{
+		document.getElementById('form_new').style.display="block";
+		document.getElementById('table').style.display="none";
+	}
+	function cancel()
+	{
+		document.getElementById('form_new').style.display="none";
+		document.getElementById('table').style.display="block";
+	}
+	function hover($this) {
+		$this.style.backgroundColor="#343a40";
+	}
+	function out($this) {
+		$this.style.backgroundColor="#fff";
+	}
+	function sub($this)
+	{
+		var r = confirm("Are you sure?");
+		if (r == true) {
+			$this.parentNode.submit();
+			
+		} else {
+
+		}
+
+	}
+</script>
