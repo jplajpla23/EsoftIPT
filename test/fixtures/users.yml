@@ -3,11 +3,12 @@
 one:
   name: MyString
   email: MyString
-  password: MyString
+  password_digest: MyString
   remember_token: MyString
 
 two:
   name: MyString
   email: MyString
-  password: MyString
+  password_digest: MyString
   remember_token: MyString
+

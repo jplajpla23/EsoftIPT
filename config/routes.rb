@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'authentication_controller/authenticate'
+  post 'authenticate', to: 'authentication#authenticate'
   get '/', to: 'users#indexLogSensor'
   #####################Group Routes#############################################
   get '/myGroups', to: 'groups#all', as: 'mygroups'
