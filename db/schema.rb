@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_01_120927) do
+ActiveRecord::Schema.define(version: 2018_12_02_114113) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "btree_gin"
@@ -37,6 +37,16 @@ ActiveRecord::Schema.define(version: 2018_12_01_120927) do
   enable_extension "uuid-ossp"
   enable_extension "xml2"
 
+  create_table "alerts", force: :cascade do |t|
+    t.string "message"
+    t.float "min"
+    t.float "max"
+    t.bigint "sensors_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["sensors_id"], name: "index_alerts_on_sensors_id"
+  end
+
   create_table "groups", force: :cascade do |t|
     t.integer "user_id"
     t.string "description"
@@ -47,7 +57,6 @@ ActiveRecord::Schema.define(version: 2018_12_01_120927) do
   create_table "sensor_histories", force: :cascade do |t|
     t.float "value"
     t.datetime "time"
-    t.string "sensors_historycol"
     t.bigint "sensors_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -62,6 +71,8 @@ ActiveRecord::Schema.define(version: 2018_12_01_120927) do
     t.float "min"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "groups_id"
+    t.index ["groups_id"], name: "index_sensors_on_groups_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -74,5 +85,7 @@ ActiveRecord::Schema.define(version: 2018_12_01_120927) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "alerts", "sensors", column: "sensors_id"
   add_foreign_key "sensor_histories", "sensors", column: "sensors_id"
+  add_foreign_key "sensors", "groups", column: "groups_id"
 end

@@ -22,5 +22,12 @@ Rails.application.routes.draw do
   ######################API#####################################################
   post  '/api/sensorUpload', to: 'api#sensorSave'
   ##############################################################################
+  ###########################Alerts#############################################
+  get '/alerts', to: 'alerts#all', as: 'myAlerts'
+  post '/alertsSave', to: 'alerts#save', as: 'myAlertsSave'
+  get ' /alertEdit/:id', to: 'alerts#edit', as: 'myAlertsEdit'
+  post '/alertsEdit', to: 'alerts#editPost', as:'myAlertsEditPost'
+  post '/deleteSensor', to: 'alerts#delete', as: 'deleteAlert'
+  ##############################################################################
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

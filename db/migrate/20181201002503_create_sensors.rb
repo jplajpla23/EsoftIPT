@@ -7,6 +7,7 @@ class CreateSensors < ActiveRecord::Migration[5.2]
       t.float :max
       t.float :min
       t.timestamps
+      t.references :groups, foreign_key: true
     end
   end
 end

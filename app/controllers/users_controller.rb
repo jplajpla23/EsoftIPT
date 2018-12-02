@@ -2,11 +2,10 @@ class UsersController < ApplicationController
     
     def indexLogSensor
       # se o user nao estiver logado mostrar
-     render "home/indexLogSensor"
+     #render "home/indexLogSensor"
      # se estiver mostrar o dashboard
-     #render "home/dashboard"
+     render "home/dashboard"
     end
-    
     def new
     end
     
