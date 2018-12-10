@@ -24,7 +24,7 @@ class SensorsController < ApplicationController
 			redirect_to sensors_path
 		end
 	end
-	def update
+	def editPost
 		@sensor = Sensor.find(params[:id])
 		if @sensor.update(sensor_params)
 		  flash[:success] = "Object was successfully updated"
@@ -42,10 +42,6 @@ class SensorsController < ApplicationController
 		#caminho da view para executar o create
 	end
 	def edit
-		render plain: "Nao implementado"
-		#caminho da view para executar o update
-	end
-	def editPost
 		render plain: "Nao implementado"
 		#caminho da view para executar o update
 	end
