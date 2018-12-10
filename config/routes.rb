@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  ##############################################################################
+  ######################Login###################################################
+  
+  ##############################################################################
+  resources :users
   get 'authentication_controller/authenticate'
   post 'authenticate', to: 'authentication#authenticate'
   get '/', to: 'users#indexLogSensor'
