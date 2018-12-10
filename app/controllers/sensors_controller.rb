@@ -14,7 +14,7 @@ class SensorsController < ApplicationController
 		end
 	end
 	
-	def destroy
+	def delete
 		@sensor = Sensor.find(params[:id])
 		if @object.destroy
 			flash[:success] = 'Object was successfully deleted.'
@@ -39,14 +39,14 @@ class SensorsController < ApplicationController
 	
 	def new
 		render plain: "Nao implementado"
+		#caminho da view para executar o create
 	end
 	def edit
 		render plain: "Nao implementado"
+		#caminho da view para executar o update
 	end
 	def editPost
 		render plain: "Nao implementado"
-	end
-	def delete
-		render plain: "Nao implementado"
+		#caminho da view para executar o update
 	end
 end
