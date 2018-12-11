@@ -29,11 +29,11 @@ LogSensor requires vagrant to run.
     -vagrant box add jadesystems/rails-5-2
 ### To Start
 To start webserver:
-    -vagrant up
-    -vagrant ssh
-    -cd ./code
-    -bundle install (only first time)
-    -rails s
+  - vagrant up
+  - vagrant ssh
+  - cd ./code
+  - bundle install (only first time)
+  - rails s
 
 ### Plugins
 | Plugin | Link |
