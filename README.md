@@ -27,6 +27,14 @@ A openSource-platform to configure SMTP alerts from any sensor.
 
 LogSensor requires vagrant to run.
     -vagrant box add jadesystems/rails-5-2
+### To Start
+To start webserver:
+     -run 
+        vagrant up
+        vagrant ssh
+        cd ./code
+        bundle install (only first time)
+        rails s
 
 ### Plugins
 | Plugin | Link |
