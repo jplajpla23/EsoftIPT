@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   get '/mySensorEdit/:id', to: 'sensors#edit', as: 'editSensor'
   post '/mySensorEdit', to: 'sensors#editPost', as: 'editSensorPost'
 
-  post '/deleteSensor/:id', to: 'sensors#delete', as: 'deleteSensor'
+  post '/deleteSensor/', to: 'sensors#delete', as: 'deleteSensor'
   ######################Sensor History##########################################
   get '/sensor/:id/history', to: 'sensor_historys#show', as: 'Sensor_history'
   
