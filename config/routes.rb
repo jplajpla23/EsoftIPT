@@ -11,10 +11,14 @@ Rails.application.routes.draw do
   ##############################################################################
   #####################Sensor Routes############################################
   get '/mySensors', to: 'sensors#all', as: 'mySensors'
-  post '/mySensorsSave', to: 'sensors#new', as: 'saveNewSensor'
+
+  get '/mySensorsAdd', to: 'sensors#new', as: 'mySensorsAdd'
+  post '/mySensorsSave', to: 'sensors#create', as: 'saveNewSensor'
+
   get '/mySensorEdit/:id', to: 'sensors#edit', as: 'editSensor'
   post '/mySensorEdit', to: 'sensors#editPost', as: 'editSensorPost'
-  post '/deleteSensor', to: 'sensors#delete', as: 'deleteSensor'
+
+  post '/deleteSensor/', to: 'sensors#delete', as: 'deleteSensor'
   ######################Sensor History##########################################
   get '/sensor/:id/history', to: 'sensor_historys#show', as: 'Sensor_history'
   
