@@ -6,8 +6,14 @@ class ApiController < ActionController::API
 		# no body do request esta o json do seguinte formato {"str":"MAC_/temperature"}
 		a= params[:str].split("_/")
 		val= a[1]
-		mac= a[0]
+		macAd= a[0]
 		render plain: "ok"
+
+		@sensor=Sensors.where(mac: macAd)
+		id=@sensor.id
+
+		SensorHistory.create(value: val, time: Time.now, sensors_id:id )
+		
 	end
 
 end
