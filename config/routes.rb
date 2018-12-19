@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
-  get 'authentication_controller/authenticate'
-  post 'authenticate', to: 'authentication#authenticate'
-  get '/', to: 'users#indexLogSensor'
+  #get 'authentication_controller/authenticate'
+  #post 'authenticate', to: 'authentication#authenticate'
+  get '/login', to: 'users#login', as: 'login'
+  post '/login', to: 'users#loginCheck', as: 'loginSend'
+  get '/logout', to: 'users#logout', as: 'logout'
+  get '/register', to: 'users#register', as: 'register'
+  post '/register', to: 'users#registerSave', as: 'registerSave'
+  get '/', to: 'users#indexLogSensor', as: 'home'
   #####################Group Routes#############################################
   get '/myGroups', to: 'groups#all', as: 'mygroups'
   post '/myGroupsSave', to: 'groups#new', as: 'saveNewGroup'

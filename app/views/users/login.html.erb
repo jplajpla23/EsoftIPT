@@ -1,0 +1,41 @@
+<div class="container" style=" border: 2px solid #fff; border-radius: 5px;background-color: #fff;margin-top: 10px;">
+	<center>
+		<h2>Login</h2>
+		<br>
+
+
+
+		<form class="form-horizontal" role="form" method="POST" action="<%= loginSend_path %>">
+			<%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+
+			<div class="form-group">
+				<label class="col-md-4 control-label">E-Mail Address</label>
+
+				<div class="col-md-6">
+					<input type="email" class="form-control" name="email" value="">
+
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-md-4 control-label">Password</label>
+
+				<div class="col-md-6">
+					<input type="password" class="form-control" name="password">
+
+				</div>
+			</div>
+			<div class="form-group">
+				<span>Don't have any account</span><a href="<%= register_path %>"> Click Here!</a>
+				
+			</div>
+			<div class="form-group">
+				<div class="col-md-6 col-md-offset-4">
+					<input type="submit" class="btn btn-primary"value="Login" style="padding: 10px!important;">
+				</div>
+			</div>
+
+		</form>
+	</center>
+	<br>
+</div>
