@@ -1,0 +1,32 @@
+<div class="container" style=" border: 2px solid #fff; border-radius: 5px;background-color: #fff;margin-top: 10px;">
+	<center>
+		<h2>Edit Sensor - <%= @sensor.sensor_desc %></h2>
+		<br></center>
+		<form method="POST" action="<%= editSensorPost_path %>">
+			<%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+			<input type="hidden" name="id" value="<%= @sensor.id%>">
+            <input type="hidden" name="mac" value="<%= @sensor.mac%>">
+			<div class="form-group">
+				<center><label for="desc">New Description</label></center><input required type="text" class="form-control" name="desc" value="<%= @sensor.sensor_desc%>"><br>
+			</div>
+            <div class="form-group">
+				<center><label for="max">New Max</label></center><input required type="text" class="form-control" step="0.01" name="max" value="<%= @sensor.max%>"><br>
+			</div>
+            <div class="form-group">
+				<center><label for="min">New Min</label></center><input required type="text" class="form-control" step="0.01" name="min" value="<%= @sensor.min%>"><br>
+			</div>
+            <div class="form-group">
+				<center><label for="group">Group</label></center><select  class="form-control" name="group" required>
+                <option disabled selected >Select one</option>
+                <% @groups.each do |grp| %>
+                <option value="<%= grp.id %>" ><%= grp.description %></option>
+                <% end %>
+                </select>
+                <input class="btn btn-success" type="submit" value="Update" style="padding: 5px!important;margin: 1px!important;">
+			</div>
+		</form>
+	
+	
+	
+	<br>
+</div>

@@ -1,2 +1,120 @@
-<h1>Sensors#index</h1>
-<p>Find me in app/views/sensors/index.html.erb</p>
+<div class="container" style=" border: 2px solid #fff; border-radius: 5px;background-color: #fff;margin-top: 10px;">
+	<center>
+		<h2>My Sensores</h2>
+		<br>
+
+	</center>
+	<div style="float: right!important;">
+		<a class="btn btn-warning" onclick="showformCreate();" style="margin:0px!important;padding: 5px!important;text-transform: none!important;"><i class="fas fa-plus"></i> New</a>
+		<br>
+		<br>
+		
+	</div>
+	<div  style="width: 60%" >
+		
+		<form id="form_new" method="POST" action="<%= saveNewSensor_path %>" style="display:none!important;">
+			<%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+
+			<div class="form-group">
+				<label for="desc">Description</label><input required type="text" class="form-control" name="desc" required>
+			</div>
+            <div class="form-group">
+				<label for="desc">Mac Address</label><input required type="text" class="form-control" name="mac" required>
+			</div>
+            <div class="form-group">
+				<label for="desc">Valor Minimo</label><input required type="number" class="form-control" step="0.01" name="min" required>
+			</div>
+            <div class="form-group">
+				<label for="desc">Valor Maximo</label><input required type="number" class="form-control" step="0.01" name="max" required>
+			</div>
+            <div class="form-group">
+				<label for="desc">Group</label><select  class="form-control" name="group" required>
+                <option disabled selected>Select one</option>
+                <% @groups.each do |grp| %>
+                <option value="<%= grp.id %>" ><%= grp.description %></option>
+                <% end %>
+                </select>
+			</div>
+			<input class="btn btn-outline-warning" type="submit" value="Create" style="padding: 5px!important;margin: 1px!important;">
+			<a class="btn btn-outline-darkk" style="padding: 5px!important;margin: 1px!important;" onmouseover="hover(this);" onmouseout="out(this)" onclick="cancel()">Cancel</a>
+		</form>
+	</div><br>
+	<div id="table">
+		<table id="example" class="display" style="width:100%"> 
+			<thead>
+				<tr>
+					<th>Description</th>
+					<th>mac</th>
+                    <th>Max</th>
+                    <th>Min</th>
+                    <th>Grupo</th>
+                    <th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @sensor.each do |sen| %>
+				<tr>
+					<td><%= sen.sensor_desc %></td>
+					<td><%= sen.mac %></td>
+                    <td><%= sen.max %></td>
+                    <td><%= sen.min %></td>
+                    <td><%= sen.groups_id %></td>
+					<td>
+
+						<!-- trocar o if para depois so dar para eliminar o groupo se nao houver sensores associados-->
+						<% if 0==0 %>
+						<form method="POST" action="<%= deleteSensor_path %>">
+							<%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+							<input type="hidden" name="id" value="<%= sen.id%>">
+							<a onclick="sub(this);" class="btn btn-danger" style="    color: white;margin:0px!important;padding: 5px!important;text-transform: none!important;"><i class="fas fa-trash-alt"></i> Delete</a> 
+							<a href="<%= editSensor_path(sen.id) %>" class="btn btn-success" style="margin:0px!important;padding: 5px!important;text-transform: none!important;"><i class="fas fa-pencil-alt"></i> Edit</a>
+						</form>
+						<% end %>
+						
+
+
+						
+					</td>
+				</tr>
+				<% end %>
+
+			</tbody>
+		</table>
+	</div>
+	<br>
+</div>
+<script type="text/javascript">
+    var jQuery_2 = $.noConflict(true);
+</script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#example').DataTable();
+	} );
+	function showformCreate()
+	{
+		document.getElementById('form_new').style.display="block";
+		document.getElementById('table').style.display="none";
+	}
+	function cancel()
+	{
+		document.getElementById('form_new').style.display="none";
+		document.getElementById('table').style.display="block";
+	}
+	function hover($this) {
+		$this.style.backgroundColor="#343a40";
+	}
+	function out($this) {
+		$this.style.backgroundColor="#fff";
+	}
+	function sub($this)
+	{
+		var r = confirm("Are you sure?");
+		if (r == true) {
+			$this.parentNode.submit();
+			
+		} else {
+
+		}
+
+	}
+</script>
