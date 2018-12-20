@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   #####################Sensor Routes############################################
   get '/mySensors', to: 'sensors#all', as: 'mySensors'
 
-  get '/mySensorsAdd', to: 'sensors#new', as: 'mySensorsAdd'
+ # get '/mySensorsAdd', to: 'sensors#new', as: 'mySensorsAdd'
   post '/mySensorsSave', to: 'sensors#create', as: 'saveNewSensor'
 
   get '/mySensorEdit/:id', to: 'sensors#edit', as: 'editSensor'
