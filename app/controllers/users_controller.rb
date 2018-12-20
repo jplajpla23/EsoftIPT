@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   def indexLogSensor
 
     if session[:user_id]==nil
-      :index
+      
     else
       @isAdmin= User.find(session[:user_id]).role
       render "home/dashboard"

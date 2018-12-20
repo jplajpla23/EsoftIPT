@@ -1,31 +1,45 @@
 class AlertsController < ApplicationController
   def all
     #procurar todos os alertas e agrupar por sensor
-    render "alerts/index" 
+
+    if session[:user_id]==nil
+
+    else
+      @sensors=Sensor.where(idusers: session[:user_id])
+      @sensors.each do |s|
+        @alerts= Alert.where(sensors_id: s.id)
+      end
+      render "alerts/index" 
+      return
+    end
+    redirect_to some_url login_path
+
+
+    
   end
 
 
   def save
-        render plain: "Nao implementado"
+    render plain: "Nao implementado"
   end
 
 
   def edit
-      render plain: "Nao implementado"
+    render plain: "Nao implementado"
   end
 
 
   def edit
-        render plain: "Nao implementado"
+    render plain: "Nao implementado"
   end
 
   def editPost
-        render plain: "Nao implementado"
-  
+    render plain: "Nao implementado"
+
   end
 
   def delete
-        render plain: "Nao implementado"
+    render plain: "Nao implementado"
   end
 
   private
@@ -38,4 +52,4 @@ class AlertsController < ApplicationController
     def alert_params
       params.require(:alert).permit(:sensor_idsensors, :message, :min, :max, :created_at, :updated_at)
     end
-end
+  end

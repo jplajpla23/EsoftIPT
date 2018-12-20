@@ -6,8 +6,8 @@
     <a class="btn btn-warning" onclick="showformCreate();" style="margin:0px!important;padding: 5px!important;text-transform: none!important;"><i class="fas fa-plus"></i> New</a>
     <br>
     <br>
-    
   </div>
+
     <table class="dataTable">
       <thead>
         <tr>
@@ -19,6 +19,7 @@
         </tr>
       </thead>
       <tbody>
+        <% @alerts.each do |s| %>
         <tr>
           <td></td>
           <td>Messagem que envia</td>
@@ -31,6 +32,7 @@
               <a href="<%=myAlertsEdit_path(-1)%>" class="btn btn-success" style="margin:0px!important;padding: 5px!important;text-transform: none!important;"><i class="fas fa-pencil-alt"></i> Edit</a>
             </form></td>
         </tr>
+        <% end %>
       </tbody>
     </table>
 	</center>
