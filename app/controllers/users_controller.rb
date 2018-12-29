@@ -3,62 +3,77 @@ class UsersController < ApplicationController
   def indexLogSensor
     if session[:user_id]==nil
     else
-      @isAdmin= User.find(session[:user_id]).role
+      @isAdmin= User.find(session[:user_id]).role==1
       render "home/dashboard"
       return
     end
     render "home/indexLogSensor"
 
   end
-  def new
-  end
 
-  def create
-    @users = User.new(params[:user])
-    @isAdmin= User.find(session[:user_id]).role
-    if @users.save
-      flash[:success] = "Object successfully created"
-      redirect_to @users
-    else
-      flash[:error] = "Something went wrong"
-      render 'new'
+  def delete
+    if session[:user_id]==nil
+      redirect_to login_path
+      return
     end
-  end
-
-  def update
-    @users = User.find(params[:id])
-    @isAdmin= User.find(session[:user_id]).role
-    if @users.update_attributes(params[:users])
-      flash[:success] = "Object was successfully updated"
-      redirect_to @users
-    else
-      flash[:error] = "Something went wrong"
-      render 'edit'
+    @isAdmin= User.find(session[:user_id]).role==1
+    if !@isAdmin
+      redirect_to home_path
+      return
     end
+    u = User.find(params[:id])
+    u.destroy!
+    redirect_to users_path
+    return
   end
 
-  def destroy
-    @users = Object.find(params[:id])
-    @isAdmin= User.find(session[:user_id]).role
-    if @users.destroy
-      flash[:success] = 'Object was successfully deleted.'
-      redirect_to objects_url
-    else
-      flash[:error] = 'Something went wrong'
-      redirect_to objects_url
+  def editSave
+    if session[:user_id]==nil
+      redirect_to login_path
+      return
     end
-  end
-
-  def show
-
+    @isAdmin= User.find(session[:user_id]).role==1
+    if !@isAdmin
+      redirect_to home_path
+      return
+    end
+    id= params[:id]
+    name=params[:name]
+    email=params[:email]
+    role=params[:role]
+    @user= User.find(params[:id])
+    @user.name= params[:name]
+    @user.email= params[:email]
+    @user.role= params[:role]
+    @user.save
+    redirect_to users_path
+    return
   end
 
   def edit
+    if session[:user_id]==nil
+      redirect_to login_path
+      return
+    end
+    @isAdmin= User.find(session[:user_id]).role==1
+    if !@isAdmin
+      redirect_to home_path
+      return
+    end
+    @user=User.find(params[:id])
   end
 
   def index
+    if session[:user_id]==nil
+      redirect_to login_path
+      return
+    end
+    @isAdmin= User.find(session[:user_id]).role==1
+    if !@isAdmin
+      redirect_to home_path
+      return
+    end
     @users = User.all
-
   end
   def login
     if(session[:user_id] ==nil)

@@ -4,11 +4,7 @@
 		<br>
 
 	</center>
-	<div style="float: right!important;">
-		<a class="btn btn-warning" style="margin:0px!important;padding: 5px!important;text-transform: none!important;"><i class="fas fa-users"></i> New</a>
-		<br>
-		<br>
-	</div>
+	
 	<table id="example" class="display" style="width:100%"> 
 		<thead>
 			<tr>
@@ -30,8 +26,12 @@
 					Regular User
 					<% end %></td>
 					<td>
-						<a class="btn btn-danger" style="  color: white;margin:0px!important;padding: 5px!important;text-transform: none!important;"><i class="fas fa-trash-alt"></i> Delete</a>
-						<a class="btn btn-success" style="  color: white;margin:0px!important;padding: 5px!important;text-transform: none!important;"><i class="fas fa-pencil-alt"></i> Edit</a>
+						<form method="POST" action="<%= delete_user_path %>" style="display: inline;">
+							<%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+							<input type="hidden" name="id" value="<%= user.id%>">
+							<a onclick="sub(this);" class="btn btn-danger" style="    color: white;margin:0px!important;padding: 5px!important;text-transform: none!important;"><i class="fas fa-trash-alt"></i> Delete</a> 
+						</form>
+						<a  href="<%= edit_user_get_path(user.id)%>"class="btn btn-success" style="  color: white;margin:0px!important;padding: 5px!important;text-transform: none!important;"><i class="fas fa-pencil-alt"></i> Edit</a>
 					</td>
 				</tr>
 				<% end %>
@@ -43,13 +43,25 @@
 
 			</tbody>
 		</table>
+
 		<br>
 	</div>
-<script type="text/javascript">
-    var jQuery_2 = $.noConflict(true);
-</script>
+	<script type="text/javascript">
+		var jQuery_2 = $.noConflict(true);
+	</script>
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$('#example').DataTable();
 		} );
+		function sub($this)
+		{
+			var r = confirm("Are you sure?");
+			if (r == true) {
+				$this.parentNode.submit();
+
+			} else {
+
+			}
+
+		}
 	</script>
