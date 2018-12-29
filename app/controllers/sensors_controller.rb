@@ -5,7 +5,11 @@ class SensorsController < ApplicationController
 			return
 		end
 		id=session[:user_id]
+		@isAdmin= User.find(session[:user_id]).role
 		@sensor=Sensor.where(idusers: id)
+		@sensor.each do |s|
+			s.history= SensorHistory.where(sensors_id: s.id)
+		end
 		@groups=Group.where(user_id: id)
 		render "sensors/index"
 	end
@@ -16,6 +20,7 @@ class SensorsController < ApplicationController
 			return
 		end
 		sensor = Sensor.new
+		@isAdmin= User.find(session[:user_id]).role
 		sensor.idusers=session[:user_id]
 		sensor.sensor_desc=params[:desc]
 		sensor.mac=params[:mac]
@@ -38,24 +43,19 @@ class SensorsController < ApplicationController
 			redirect_to login_path
 			return
 		end
+		@isAdmin= User.find(session[:user_id]).role
 		@sensor = Sensor.find(params[:id])
 		id=@sensor.id
 		@sensor_history=SensorHistory.where(sensors_id: id)
-		unless @sensor_history
-			@sensor_history.destroy
+		@alerts= Alert.where(sensors_id: id)
+		@sensor_history.each do |i|
+			i.destroy!
 		end
-		@alerts=Alert.where(sensors_id: id)
-		unless @alerts
-			@alerts.destroy
+		@alerts.each do |i|
+			i.destroy!
 		end
-		@sensor.destroy
-		if @sensor.destroy
-			flash[:success] = 'Object was successfully deleted.'
-			redirect_to mySensors_path
-		else
-			flash[:error] = 'Something went wrong'
-			redirect_to mySensors_path
-		end
+		@sensor.destroy!
+		redirect_to mySensors_path	
 	end
 
 	def editPost
@@ -63,6 +63,7 @@ class SensorsController < ApplicationController
 			redirect_to login_path
 			return
 		end
+		@isAdmin= User.find(session[:user_id]).role
 		@sensor= Sensor.find(params[:id])
 		@sensor.sensor_desc= params[:desc]
 		@sensor.mac=params[:mac]
@@ -90,6 +91,7 @@ class SensorsController < ApplicationController
 			redirect_to login_path
 			return
 		end
+		@isAdmin= User.find(session[:user_id]).role
 		id=session[:user_id]
 		@sensor = Sensor.find(params[:id])
 		@groups=Group.where(user_id: id)

@@ -7,4 +7,5 @@ class Sensor < ApplicationRecord
     validates :sensor_desc, presence: true, length: {maximum: 50}
     validates :max, presence: true
     validates :min, presence: true
+    attr_accessor :history
 end

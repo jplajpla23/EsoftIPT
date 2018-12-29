@@ -35,18 +35,19 @@
 				<% @groups.each do |group| %>
 				<tr>
 					<td><%= group.description %></td>
-					<td>-</td>
+					<td><%= @sensorsCount[group.id] %></td>
 					<td>
 
 						<!-- trocar o if para depois so dar para eliminar o groupo se nao houver sensores associados-->
-						<% if 0==0 %>
-						<form method="POST" action="<%= deleteGroup_path %>">
+						<% if @sensorsCount[group.id]==0 %>
+						<form method="POST" action="<%= deleteGroup_path %>" style="display: inline;">
 							<%= hidden_field_tag :authenticity_token, form_authenticity_token %>
 							<input type="hidden" name="id" value="<%= group.id%>">
 							<a onclick="sub(this);" class="btn btn-danger" style="    color: white;margin:0px!important;padding: 5px!important;text-transform: none!important;"><i class="fas fa-trash-alt"></i> Delete</a> 
-							<a href="<%= editGroup_path(group.id) %>" class="btn btn-success" style="margin:0px!important;padding: 5px!important;text-transform: none!important;"><i class="fas fa-pencil-alt"></i> Edit</a>
 						</form>
 						<% end %>
+						<a href="<%= editGroup_path(group.id) %>" class="btn btn-success" style="margin:0px!important;padding: 5px!important;text-transform: none!important;"><i class="fas fa-pencil-alt"></i> Edit</a>
+							
 						
 
 
