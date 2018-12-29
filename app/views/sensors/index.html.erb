@@ -18,37 +18,75 @@
 			<div class="form-group">
 				<label for="desc">Description</label><input required type="text" class="form-control" name="desc" required>
 			</div>
-            <div class="form-group">
+			<div class="form-group">
 				<label for="desc">Mac Address</label><input required type="text" class="form-control" name="mac" required>
 			</div>
-            <div class="form-group">
-				<label for="desc">Valor Minimo</label><input required type="number" class="form-control" step="0.01" name="min" required>
+			<div class="form-group">
+				<label for="desc">Valor Minimo</label><input id="min" required type="number" class="form-control" step="0.01" name="min" required onchange="setMin(this)">
 			</div>
-            <div class="form-group">
-				<label for="desc">Valor Maximo</label><input required type="number" class="form-control" step="0.01" name="max" required>
+			<div class="form-group">
+				<label for="desc">Valor Maximo</label><input required id="max" type="number" class="form-control" step="0.01" name="max" required onchange="setMax(this)">
 			</div>
-            <div class="form-group">
+			<div class="form-group">
 				<label for="desc">Group</label><select  class="form-control" name="group" required>
-                <option disabled selected>Select one</option>
-                <% @groups.each do |grp| %>
-                <option value="<%= grp.id %>" ><%= grp.description %></option>
-                <% end %>
-                </select>
+					<option disabled selected>Select one</option>
+					<% @groups.each do |grp| %>
+					<option value="<%= grp.id %>" ><%= grp.description %></option>
+					<% end %>
+				</select>
 			</div>
 			<input class="btn btn-outline-warning" type="submit" value="Create" style="padding: 5px!important;margin: 1px!important;">
 			<a class="btn btn-outline-darkk" style="padding: 5px!important;margin: 1px!important;" onmouseover="hover(this);" onmouseout="out(this)" onclick="cancel()">Cancel</a>
 		</form>
 	</div><br>
+	<div  style="width: 60%" >
+		
+		<form id="form_newAlert" method="POST" action="<%= myAlertsSave_path %>" style="display:none!important;">
+			<%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+			<input id="sensor_id_alert" type="hidden" name="sensorId">
+			<div class="form-group">
+				<label for="message">Message to Send</label><input required type="text" class="form-control" name="message" required>
+			</div>
+			<div class="form-group">
+				<label for="desc">Min of Safe Range</label><input id="min2" required type="number" class="form-control" step="0.01" name="min" required onchange="setMin2(this)">
+			</div>
+			<div class="form-group">
+				<label for="desc">Max of Safe Range</label><input required id="max2" type="number" class="form-control" step="0.01" name="max" required onchange="setMax2(this)">
+			</div>
+			<input class="btn btn-outline-warning" type="submit" value="Create" style="padding: 5px!important;margin: 1px!important;">
+			<a class="btn btn-outline-darkk" style="padding: 5px!important;margin: 1px!important;" onmouseover="hover(this);" onmouseout="out(this)" onclick="cancel()">Cancel</a>
+		</form>
+	</div>
+	<div id="myModal" class="modal fade" role="dialog" >
+		<div class="modal-dialog" style="width: 80vw!important;max-width: 80vw!important;">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">Readings</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body" style="width: 100%;">
+					<div id="chart_div" style="width: 100%!important;" ></div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal" style="padding:5px!important;">Close</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
 	<div id="table">
-		<table id="example" class="display" style="width:100%"> 
+		<table  class="display dataTable" style="width:100%"> 
 			<thead>
 				<tr>
 					<th>Description</th>
 					<th>mac</th>
-                    <th>Max</th>
-                    <th>Min</th>
-                    <th>Grupo</th>
-                    <th>Actions</th>
+					<th>Max</th>
+					<th>Min</th>
+					<th>Grupo</th>
+					<th>Actions</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -56,9 +94,14 @@
 				<tr>
 					<td><%= sen.sensor_desc %></td>
 					<td><%= sen.mac %></td>
-                    <td><%= sen.max %></td>
-                    <td><%= sen.min %></td>
-                    <td><%= sen.groups_id %></td>
+					<td><%= sen.max %></td>
+					<td><%= sen.min %></td>
+					<td><% @groups.each do |s| %>
+						<% if s.id==sen.groups_id %>
+						<%= s.description %>
+						<% end %>
+						<% end %>
+					</td>
 					<td>
 
 						<!-- trocar o if para depois so dar para eliminar o groupo se nao houver sensores associados-->
@@ -66,8 +109,12 @@
 						<form method="POST" action="<%= deleteSensor_path %>">
 							<%= hidden_field_tag :authenticity_token, form_authenticity_token %>
 							<input type="hidden" name="id" value="<%= sen.id%>">
-							<a onclick="sub(this);" class="btn btn-danger" style="    color: white;margin:0px!important;padding: 5px!important;text-transform: none!important;"><i class="fas fa-trash-alt"></i> Delete</a> 
+							<a onclick="sub(this);" class="btn btn-danger" style="color: white;margin:0px!important;padding: 5px!important;text-transform: none!important;"><i class="fas fa-trash-alt"></i> Delete</a> 
 							<a href="<%= editSensor_path(sen.id) %>" class="btn btn-success" style="margin:0px!important;padding: 5px!important;text-transform: none!important;"><i class="fas fa-pencil-alt"></i> Edit</a>
+							<a class="btn btn- btn-warning" onclick="showNewAlert(<%= sen.id %>)" style="margin:0px!important;padding: 5px!important;text-transform: none!important;"><i class="fas fa-bell"></i> New Alert</a>
+							<a class="btn btn- btn-info" data-dates="<%sen.history.each do |i|%><%= i.created_at%>,<% end %>" 
+								data-value="<%sen.history.each do |i|%><%= i.value%>,<% end %>" 
+								onclick="clickModal(this)" style="margin:0px!important;padding: 5px!important;text-transform: none!important;"><i class="fas fa-chart-line"></i> History</a>
 						</form>
 						<% end %>
 						
@@ -84,21 +131,64 @@
 	<br>
 </div>
 <script type="text/javascript">
-    var jQuery_2 = $.noConflict(true);
+	var jQuery_2 = $.noConflict(true);
 </script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="/js/dataTables.rowGroup.min.js"></script>
+<script src="/js/rowGroup.jqueryui.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-		$('#example').DataTable();
+		$('.dataTable').DataTable({
+			"lengthMenu": [[ 5, 10, 15, 25, 50, -1], [5, 10, 15, 25, 50, "All"]],
+			"pageLength": 15,
+			"autoWidth": true,
+			"rowGroup": {
+				startRender: function ( rows, group ) {
+                 /* var count = rows
+                        .data()
+                        .pluck(7)
+                        .reduce( function (a, b) {
+                            return parseFloat(a) + parseFloat(b);
+                        }, 0);*/ //funçao que conta a qantidade disponivel conta os valores da tabela
+                        
+                        return group;
+                    },
+                    endRender: null,
+                    "dataSrc": 4,
+                },
+                "ordering": true,
+                "orderFixed": {
+                	"pre":  [[ 4, 'asc' ]]
+                },
+                "columnDefs": [
+                {
+                	"targets": [4],
+                	"visible": false
+                }],
+                "pagingType": "full_numbers",
+                "bInfo" : true
+            });
+
+
 	} );
 	function showformCreate()
 	{
 		document.getElementById('form_new').style.display="block";
 		document.getElementById('table').style.display="none";
+		document.getElementById('form_newAlert').style.display="none";
+	}
+	function showNewAlert(id)
+	{
+		document.getElementById('sensor_id_alert').value=id;
+		document.getElementById('form_newAlert').style.display="block";
+		document.getElementById('table').style.display="none";
+		document.getElementById('form_new').style.display="none";
 	}
 	function cancel()
 	{
 		document.getElementById('form_new').style.display="none";
 		document.getElementById('table').style.display="block";
+		document.getElementById('form_newAlert').style.display="none";
 	}
 	function hover($this) {
 		$this.style.backgroundColor="#343a40";
@@ -115,6 +205,64 @@
 		} else {
 
 		}
-
 	}
+	function setMin($this)
+	{
+		document.getElementById('max').min=$this.value;
+	}
+	function setMax($this)
+	{
+		document.getElementById('min').max=$this.value;
+	}
+	function setMin2($this)
+	{
+		document.getElementById('max2').min=$this.value;
+	}
+	function setMax2($this)
+	{
+		document.getElementById('min2').max=$this.value;
+	}
+	var dataa=[];
+    function clickModal($this)
+    {
+        dataa=[];
+        var dates=$this.getAttribute('data-dates').substring(0, $this.getAttribute('data-dates').length - 1).split(',');
+        //console.log(dates);
+        var values=$this.getAttribute('data-value').substring(0, $this.getAttribute('data-dates').length - 1).split(',');
+        for (var i = 0; i < dates.length; i++) {
+        	//console.log(dates[i]);
+        	//console.log(values[i]);
+            dataa[i]=[new Date(dates[i]),parseFloat(values[i])];
+        }
+
+        jQuery_2("#myModal").modal()
+        google.charts.load('current', {packages: ['corechart', 'line']});
+        //dataa=
+        google.charts.setOnLoadCallback(drawBasic);
+
+    }
+    function drawBasic() {
+
+      var data = new google.visualization.DataTable();
+      data.addColumn('datetime', 'DateTime');
+      data.addColumn('number', 'Value');
+      data.addRows(
+        dataa);
+
+      var options = {
+        hAxis: {
+          title: 'DateTime'
+      },
+      vAxis: {
+          title: 'Value'
+      }
+  };
+
+  var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+
+  chart.draw(data, options);
+}
 </script>
+<style type="text/css">
+table.dataTable tr.dtrg-group td{font-weight:bold;background-color:#e0e0e0}
+</style>

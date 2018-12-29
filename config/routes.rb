@@ -36,7 +36,7 @@ Rails.application.routes.draw do
   ###########################Alerts#############################################
   get '/alerts', to: 'alerts#all', as: 'myAlerts'
   post '/alertsSave', to: 'alerts#save', as: 'myAlertsSave'
-  get ' /alertEdit/:id', to: 'alerts#edit', as: 'myAlertsEdit'
+  get '/alertEdit/:id', to: 'alerts#edit', as: 'myAlertsEdit'
   post '/alertsEdit', to: 'alerts#editPost', as:'myAlertsEditPost'
   post '/deleteAlert', to: 'alerts#delete', as: 'deleteAlert'
   ##############################################################################

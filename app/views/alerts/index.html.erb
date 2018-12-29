@@ -2,35 +2,38 @@
 	<center>
 		<h2>My Alerts</h2>
 		<br>
-    <div style="float: right!important;">
-    <a class="btn btn-warning" onclick="showformCreate();" style="margin:0px!important;padding: 5px!important;text-transform: none!important;"><i class="fas fa-plus"></i> New</a>
-    <br>
-    <br>
-    
-  </div>
+  <div  style="width: 60%" >
+  </div><br>
+<% debug  @alerts %>
     <table class="dataTable">
       <thead>
         <tr>
-          <th>Sensor Description</th>
+          <th>ID</th>
+          <th>Name</th>
           <th>Message</th>
-          <th>Min</th>
-          <th>Max</th>
+          <th>Safe Range</th>
           <th>Actions</th>
         </tr>
       </thead>
       <tbody>
+        <% @alerts.each do |a| %>
+        <% if a.user_id== session[:user_id] %>
         <tr>
-          <td></td>
-          <td>Messagem que envia</td>
-          <td>1</td>
-          <td>2</td>
-          <td><form method="POST" action="<%= deleteAlert_path %>">
+          <td><%= a.sensors_id %></td>
+          <td><%= a.sensor_name %></td>
+          <td><%= a.message%></td>
+          <td><%= a.min%><--><%= a.max%></td>
+          <td><form method="POST" action="<%= deleteAlert_path %>" style="display: inline;">
               <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-              <input type="hidden" name="id" value="-1">
+              <input type="hidden" name="id" value="<%= a.id%>">
               <a onclick="sub(this);" class="btn btn-danger" style="    color: white;margin:0px!important;padding: 5px!important;text-transform: none!important;"><i class="fas fa-trash-alt"></i> Delete</a> 
-              <a href="<%=myAlertsEdit_path(-1)%>" class="btn btn-success" style="margin:0px!important;padding: 5px!important;text-transform: none!important;"><i class="fas fa-pencil-alt"></i> Edit</a>
-            </form></td>
+            </form>
+            <a href="<%= myAlertsEdit_path(a.id)%>" class="btn btn-success" style="margin:0px!important;padding: 5px!important;text-transform: none!important;"><i class="fas fa-pencil-alt"></i> Edit</a>
+          </td>
         </tr>
+        
+        <% end %>
+        <% end %>
       </tbody>
     </table>
 	</center>
@@ -57,6 +60,24 @@
     }
 
   }
+  function setMin($this)
+  {
+    document.getElementById('max').min=$this.value;
+  }
+  function setMax($this)
+  {
+    document.getElementById('min').max=$this.value;
+  }
+  function showformCreate()
+  {
+    document.getElementById('form_new').style.display="block";
+    document.getElementById('table').style.display="none";
+  }
+  function cancel()
+  {
+    document.getElementById('form_new').style.display="none";
+    document.getElementById('table').style.display="block";
+  }
 $(document).ready(function() {
     $('.dataTable').DataTable({
         "lengthMenu": [[ 5, 10, 15, 25, 50, -1], [5, 10, 15, 25, 50, "All"]],
@@ -64,25 +85,29 @@ $(document).ready(function() {
         "autoWidth": true,
         "rowGroup": {
             startRender: function ( rows, group ) {
+              return rows.data().pluck(1)[0];
                  /* var count = rows
                         .data()
                         .pluck(7)
                         .reduce( function (a, b) {
                             return parseFloat(a) + parseFloat(b);
                         }, 0);*/ //funçao que conta a qantidade disponivel conta os valores da tabela
-                        
-                return group;
+                        //console.log(rows);
             },
             endRender: null,
             "dataSrc": 0,
         },
         "ordering": true,
          "orderFixed": {
-        "pre":  [[ 1, 'asc' ]]
+        "pre":  [[ 0, 'asc' ]]
     },
         "columnDefs": [
         {
             "targets": [0],
+            "visible": false
+        },
+        {
+            "targets": [1],
             "visible": false
         }],
         "pagingType": "full_numbers",

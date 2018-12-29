@@ -19,7 +19,11 @@
 				<center><label for="group">Group</label></center><select  class="form-control" name="group" required>
                 <option disabled selected >Select one</option>
                 <% @groups.each do |grp| %>
+                <%if grp.id==@sensor.groups_id%>
+                <option value="<%= grp.id %>" selected><%= grp.description %></option>
+                <%else%>
                 <option value="<%= grp.id %>" ><%= grp.description %></option>
+                <%end%>
                 <% end %>
                 </select>
                 <input class="btn btn-success" type="submit" value="Update" style="padding: 5px!important;margin: 1px!important;">

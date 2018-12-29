@@ -1,9 +1,7 @@
 class UsersController < ApplicationController
   require 'bcrypt'
   def indexLogSensor
-
     if session[:user_id]==nil
-      :index
     else
       @isAdmin= User.find(session[:user_id]).role
       render "home/dashboard"
@@ -17,7 +15,7 @@ class UsersController < ApplicationController
 
   def create
     @users = User.new(params[:user])
-
+    @isAdmin= User.find(session[:user_id]).role
     if @users.save
       flash[:success] = "Object successfully created"
       redirect_to @users
@@ -29,6 +27,7 @@ class UsersController < ApplicationController
 
   def update
     @users = User.find(params[:id])
+    @isAdmin= User.find(session[:user_id]).role
     if @users.update_attributes(params[:users])
       flash[:success] = "Object was successfully updated"
       redirect_to @users
@@ -40,6 +39,7 @@ class UsersController < ApplicationController
 
   def destroy
     @users = Object.find(params[:id])
+    @isAdmin= User.find(session[:user_id]).role
     if @users.destroy
       flash[:success] = 'Object was successfully deleted.'
       redirect_to objects_url
