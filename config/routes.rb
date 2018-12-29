@@ -29,7 +29,10 @@ Rails.application.routes.draw do
   
   ##############################################################################
   ######################Users###################################################
-  resources :users
+  get '/users', to: 'users#index', as: 'users'
+  get '/edit/users/:id', to: 'users#edit', as: 'edit_user_get'
+  post '/edit/users', to: 'users#editSave', as: 'edit_user_post'
+  post '/delete/user', to: 'users#delete', as: 'delete_user'
   ######################API#####################################################
   post  '/api/sensorUpload', to: 'api#sensorSave'
   ##############################################################################
