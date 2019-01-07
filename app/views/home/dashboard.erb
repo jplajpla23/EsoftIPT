@@ -18,24 +18,24 @@
 				</tr>
 	 		</thead>
 	 		<tbody>
-	 			<tr>
-	 				<td>exemplo</td>
-	 				<td>Group1</td>
-	 				<td>123456</td>
-	 				<td>2018-12-2</td>
+	 			<% @sensors.each do |sen| %>
+
+        <tr>
+	 				<td><%= sen.sensor_desc%></td>
+	 				<td><%= sen.groups_id%>-<%= sen.groupName%></td>
+	 				<td><% if sen.history.last != nil %>
+          <%= sen.history.last.value %>
+            <%else%>     
+          --
+            <%end%>     
+          </td>
+	 				<td><% if sen.history.last != nil %>
+          <%= sen.history.last.time %>
+            <%else%>     
+          --
+            <%end%>  </td>
 	 			</tr>
-	 			<tr>
-	 				<td>exemplo</td>
-	 				<td>Group1</td>
-	 				<td>12</td>
-	 				<td>2018-12-2</td>
-	 			</tr>
-	 			<tr>
-	 				<td>exemplo</td>
-	 				<td>Group2</td>
-	 				<td>12345623</td>
-	 				<td>2018-12-2</td>
-	 			</tr>
+	 			<% end %>
 	 		</tbody>
 	 	</table>
 	 </div>
@@ -62,11 +62,9 @@
         data.addColumn('string', 'Topping');
         data.addColumn('number', 'Slices');
         data.addRows([
-          ['adicionar aqui os grupos', 3],
-          ['-', 1],
-          ['-', 1],
-          ['-', 1],
-          ['Sem grupo', 2]
+         <% @groups.each do |p| %>
+          ['<%= p.description %>', <%= p.count %>], 
+          <% end %>
         ]);
 
         // Set chart options
