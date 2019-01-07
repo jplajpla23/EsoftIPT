@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   def indexLogSensor
     if session[:user_id]==nil
     else
-      @isAdmin= User.find(session[:user_id]).role==1
+      @isAdmin= User.find(session[:user_id]).role
       @groups=Group.where(user_id: session[:user_id])
       @groups.each do |g|
         g.count=Sensor.where(groups_id: g.id).count()
