@@ -8,4 +8,5 @@ class Sensor < ApplicationRecord
     validates :max, presence: true
     validates :min, presence: true
     attr_accessor :history
+    attr_accessor :groupName
 end

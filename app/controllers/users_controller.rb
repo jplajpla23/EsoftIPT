@@ -4,6 +4,15 @@ class UsersController < ApplicationController
     if session[:user_id]==nil
     else
       @isAdmin= User.find(session[:user_id]).role==1
+      @groups=Group.where(user_id: session[:user_id])
+      @groups.each do |g|
+        g.count=Sensor.where(groups_id: g.id).count()
+      end
+      @sensors= Sensor.where(idusers: session[:user_id])
+      @sensors.each do |s|
+      s.history= SensorHistory.where(sensors_id: s.id)
+      s.groupName=Group.find(s.groups_id).description
+      end
       render "home/dashboard"
       return
     end

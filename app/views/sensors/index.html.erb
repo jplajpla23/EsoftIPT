@@ -228,13 +228,14 @@
         dataa=[];
         var dates=$this.getAttribute('data-dates').substring(0, $this.getAttribute('data-dates').length - 1).split(',');
         //console.log(dates);
-        var values=$this.getAttribute('data-value').substring(0, $this.getAttribute('data-dates').length - 1).split(',');
+        var values=$this.getAttribute('data-value').substring(0, $this.getAttribute('data-value').length - 1).split(',');
         for (var i = 0; i < dates.length; i++) {
         	//console.log(dates[i]);
         	//console.log(values[i]);
             dataa[i]=[new Date(dates[i]),parseFloat(values[i])];
         }
-
+        console.log(dates);
+        console.log(values);
         jQuery_2("#myModal").modal()
         google.charts.load('current', {packages: ['corechart', 'line']});
         //dataa=
