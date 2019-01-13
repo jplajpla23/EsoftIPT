@@ -121,13 +121,15 @@ class UsersController < ApplicationController
 
   def registerSave
     if(session[:user_id] ==nil)
-
+      
       @user = User.new
       @user.role=0
       @user.name=params[:name]
       @user.email=params[:email]
       @user.password=params[:password]
       @user.save!
+      UserMailer.with(user: @user).welcome_email.deliver_later
+
       redirect_to login_path
     end
 
