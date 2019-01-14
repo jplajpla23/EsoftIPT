@@ -1,0 +1,23 @@
+env:
+  global:
+    - DB=postgresql
+    # the CC_TEST_REPORTER_ID env var is set using travis repo settings
+
+    - GIT_COMMITTED_AT=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then git log -1 --pretty=format:%ct; else git log -1 --skip 1 --pretty=format:%ct; fi)
+language: ruby
+rvm:
+  - "2.5.1"
+services:
+  - postgresql
+script: 
+  - RAILS_ENV=test bundle exec rake db:migrate --trace
+  - bundle exec rake db:test:prepare
+  - bundle exec rake test test/
+  - if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT; fi
+before_script:
+  - psql -c 'create database travis_ci_test;' -U postgres
+  - cp config/database.yml.travis config/database.yml
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+bundler_args: --binstubs=./bundler_stubs
+notifications:
