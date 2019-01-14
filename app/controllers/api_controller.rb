@@ -8,8 +8,18 @@ class ApiController < ActionController::API
 		macAd= params[:mac]
 		@sensor=Sensor.where(mac: macAd).first
 		id=@sensor.id
+		idusers = @sensor.idusers
+		@user = User.where(id: idusers).first
 
-		SensorHistory.create(value: val, time: Time.now, sensors_id:id )
+		alerts = Alert.where(sensors_id: id)
+
+		for alert in alerts
+			if Float(val) < Float(alert.min) || Float(val) > Float(alert.max)
+				UserMailer.sensor(@user, macAd, val, alert.message).deliver_later
+			end
+		end
+
+		SensorHistory.create(value: Float(val), time: Time.now, sensors_id:id )
 		
 	end
 

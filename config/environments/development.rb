@@ -54,12 +54,12 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.default_options = {from: 'geral.projeto.esoft@gmail.com'}
+  config.action_mailer.default_options = {from: 'geral.projecto.esoft@sapo.pt'}
   config.action_mailer.smtp_settings = {
-  address: 'smtp.gmail.com',
+  address: 'smtp.sapo.pt',
   port: 587,
-  user_name: 'geral.projeto.esoft@gmail.com',
-  password: 'PaSsWoRd',
+  user_name: 'geral.projecto.esoft@sapo.pt',
+  password: 'PasswordV2',
   authentication: 'plain',
   enable_starttls_auto: true
   }
