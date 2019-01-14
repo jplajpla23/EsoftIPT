@@ -8,7 +8,8 @@ class ApiController < ActionController::API
 		macAd= params[:mac]
 		@sensor=Sensor.where(mac: macAd).first
 		id=@sensor.id
-
+		@user = User.find(session[:user_id])
+		UserMailer.with(user: @user).welcome_email.deliver_later
 		SensorHistory.create(value: val, time: Time.now, sensors_id:id )
 		
 	end
