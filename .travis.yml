@@ -21,3 +21,4 @@ before_script:
   - chmod +x ./cc-test-reporter
 bundler_args: --binstubs=./bundler_stubs
 notifications:
+  slack: jpla:9P5rU1G8BxRpB3x9b7Ufsf3p
