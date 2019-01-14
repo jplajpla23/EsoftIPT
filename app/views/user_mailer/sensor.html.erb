@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>There was a reading with an unusual value, <%= @user.name %></h1>
+    <p>
+      The sensor that was reading was <%= @mac %>.<br>
+    </p>
+    <p>
+        With the value <%= @val %>.<br>
+    </p>
+    <p>
+        It's message is: <b><%= @message %></b>.<br>
+    </p>
+    <p>
+      To see this reading go to... <%= @url %>.
+    </p>
+    <p>Thanks for reading have a great day!</p>
+  </body>
+</html>
