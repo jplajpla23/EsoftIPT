@@ -1,7 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  sensor_idsensors: 
+  #sensor_idsensors: 
   message: MyString
   min: 1.5
   max: 1.5
