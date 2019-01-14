@@ -1,0 +1,26 @@
+# TRAVIS-CI SPECIFIC DB CONFIGS
+
+default: &default
+  # adapter: sqlite3
+  # pool: 5
+  # timeout: 5000
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  host: localhost
+  username: pg
+  password: pg
+  
+development:
+  <<: *default
+  database: development
+
+test:
+  adapter: postgresql
+  database: travis_ci_test
+  username: postgres
+  encoding: utf8
+
+production:
+  <<: *default
+database: production
