@@ -1,7 +1,12 @@
 # LogSensor
 
+[![Build Status](https://travis-ci.org/jplajpla23/EsoftIPT.svg?branch=master)](https://travis-ci.org/jplajpla23/EsoftIPT)
+[![Test Coverage](https://codeclimate.com/github/jplajpla23/EsoftIPT/badges/coverage.svg)](https://codeclimate.com/github/jplajpla23/EsoftIPT)
+[![Issue Count](https://codeclimate.com/github/jplajpla23/EsoftIPT/badges/issue_count.svg)](https://codeclimate.com/github/jplajpla23/EsoftIPT)
+[![Code Climate](https://codeclimate.com/github/codeclimate/codeclimate/badges/gpa.svg)](https://codeclimate.com/github/jplajpla23/EsoftIPT)
 
-[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
+[![Build history](https://buildstats.info/travisci/chart/jplajpla23/EsoftIPT?branch=master)](https://travis-ci.org/jplajpla23/EsoftIPT/builds)
+[![Build history](https://buildstats.info/travisci/chart/jplajpla23/EsoftIPT)](https://travis-ci.org/jplajpla23/EsoftIPT/builds)
 
 A openSource-platform to configure SMTP alerts from any sensor.
 
