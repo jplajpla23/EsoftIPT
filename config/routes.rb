@@ -1,13 +1,12 @@
 Rails.application.routes.draw do
-  resources :logins
-  ##############################################################################
-  ######################Login###################################################
-  
-  ##############################################################################
-  resources :users
-  get 'authentication_controller/authenticate'
-  post 'authenticate', to: 'authentication#authenticate'
-  get '/', to: 'users#indexLogSensor'
+  #get 'authentication_controller/authenticate'
+  #post 'authenticate', to: 'authentication#authenticate'
+  get '/login', to: 'users#login', as: 'login'
+  post '/login', to: 'users#loginCheck', as: 'loginSend'
+  get '/logout', to: 'users#logout', as: 'logout'
+  get '/register', to: 'users#register', as: 'register'
+  post '/register', to: 'users#registerSave', as: 'registerSave'
+  get '/', to: 'users#indexLogSensor', as: 'home'
   #####################Group Routes#############################################
   get '/myGroups', to: 'groups#all', as: 'mygroups'
   post '/myGroupsSave', to: 'groups#new', as: 'saveNewGroup'
@@ -17,23 +16,30 @@ Rails.application.routes.draw do
   ##############################################################################
   #####################Sensor Routes############################################
   get '/mySensors', to: 'sensors#all', as: 'mySensors'
-  post '/mySensorsSave', to: 'sensors#new', as: 'saveNewSensor'
+
+ # get '/mySensorsAdd', to: 'sensors#new', as: 'mySensorsAdd'
+  post '/mySensorsSave', to: 'sensors#create', as: 'saveNewSensor'
+
   get '/mySensorEdit/:id', to: 'sensors#edit', as: 'editSensor'
   post '/mySensorEdit', to: 'sensors#editPost', as: 'editSensorPost'
-  post '/deleteSensor', to: 'sensors#delete', as: 'deleteSensor'
+
+  post '/deleteSensor/', to: 'sensors#delete', as: 'deleteSensor'
   ######################Sensor History##########################################
   get '/sensor/:id/history', to: 'sensor_historys#show', as: 'Sensor_history'
   
   ##############################################################################
   ######################Users###################################################
-  resources :users
+  get '/users', to: 'users#index', as: 'users'
+  get '/edit/users/:id', to: 'users#edit', as: 'edit_user_get'
+  post '/edit/users', to: 'users#editSave', as: 'edit_user_post'
+  post '/delete/user', to: 'users#delete', as: 'delete_user'
   ######################API#####################################################
   post  '/api/sensorUpload', to: 'api#sensorSave'
   ##############################################################################
   ###########################Alerts#############################################
   get '/alerts', to: 'alerts#all', as: 'myAlerts'
   post '/alertsSave', to: 'alerts#save', as: 'myAlertsSave'
-  get ' /alertEdit/:id', to: 'alerts#edit', as: 'myAlertsEdit'
+  get '/alertEdit/:id', to: 'alerts#edit', as: 'myAlertsEdit'
   post '/alertsEdit', to: 'alerts#editPost', as:'myAlertsEditPost'
   post '/deleteAlert', to: 'alerts#delete', as: 'deleteAlert'
   ##############################################################################
