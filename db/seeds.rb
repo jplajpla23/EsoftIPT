@@ -8,12 +8,7 @@
 
    
 
-    User.create(name: 'admin',role: 1, email:'admin@sample.pt', password:'123456', remember_token:'sdfs')
-
-3.times do |i|
-	g = Group.create(user_id: 1, description:"Group Das Seeds");
-end
-
+User.create(name: 'admin',role: 1, email:'admin@sample.pt', password:'123456', remember_token:'sdfs')
 
 5.times do |i|
    sen = Sensor.create(idusers: 1, sensor_desc: 'temp_Seed', mac: '00:00:00:00:00', max: 80, min: 0)

@@ -1,4 +1,4 @@
-# This file is auto-generated from the current state of the database. Instead
+r# This file is auto-generated from the current state of the database. Instead  
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_02_114113) do
+ActiveRecord::Schema.define(version: 2018_12_10_222452) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "btree_gin"
@@ -41,15 +41,20 @@ ActiveRecord::Schema.define(version: 2018_12_02_114113) do
     t.string "message"
     t.float "min"
     t.float "max"
-    t.bigint "sensors_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["sensors_id"], name: "index_alerts_on_sensors_id"
   end
 
   create_table "groups", force: :cascade do |t|
     t.integer "user_id"
     t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "logins", force: :cascade do |t|
+    t.string "nome"
+    t.string "password"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -79,13 +84,13 @@ ActiveRecord::Schema.define(version: 2018_12_02_114113) do
     t.integer "role"
     t.string "name"
     t.string "email"
-    t.string "password"
+    t.string "password_digest"
     t.string "remember_token"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "password"
   end
 
-  add_foreign_key "alerts", "sensors", column: "sensors_id"
   add_foreign_key "sensor_histories", "sensors", column: "sensors_id"
   add_foreign_key "sensors", "groups", column: "groups_id"
 end
