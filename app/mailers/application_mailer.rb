@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'geral.projecto.esoft@sapo.pt'
+  default from: 'logsensor.geral@sapo.pt'
   layout 'mailer'
 end
