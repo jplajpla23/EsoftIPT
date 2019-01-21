@@ -1,6 +1,6 @@
 require 'test_helper'
  class SensorsControllerTest < ActionDispatch::IntegrationTest
-  test "should get index" do
+  test "should get redirect" do
     get '/mySensors'
     assert_response :redirect
   end
