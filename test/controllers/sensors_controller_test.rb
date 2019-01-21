@@ -15,4 +15,15 @@ require 'test_helper'
     assert sensor.save
   end
 
+  test "should update sensor" do
+    sensor= Sensor.find(sensors(:one))
+    sensor.min=10
+    assert sensor.save
+  end
+
+  test "should delete sensor" do
+    sensor= Sensor.find(sensors(:one))
+    assert sensor.destroy!
+  end
+
  end
