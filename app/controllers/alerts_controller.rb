@@ -34,9 +34,11 @@ class AlertsController < ApplicationController
     alert.min=params[:min]
     alert.max=params[:max]
     alert.save
+    sensor = Sensor.find(alert.sensors_id)
+    user = User.find(sensor.idusers)
+    UserMailer.alert(user, sensor.mac, alert.message).deliver_later    
     redirect_to myAlerts_path
   end
-
 
   def edit
     if session[:user_id]==nil
