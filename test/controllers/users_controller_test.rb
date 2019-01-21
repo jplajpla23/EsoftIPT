@@ -1,5 +1,5 @@
 require 'test_helper'
-
+require 'bcrypt'
 class UsersControllerTest < ActionDispatch::IntegrationTest
   test "should get redirect" do
     get '/users'
