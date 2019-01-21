@@ -2,7 +2,7 @@ require 'test_helper'
  class SensorsControllerTest < ActionDispatch::IntegrationTest
   test "should get index" do
     get '/mySensors'
-    assert_response :success
+    assert_response :redirect
   end
 
   test "should not save sensor without nothing" do
