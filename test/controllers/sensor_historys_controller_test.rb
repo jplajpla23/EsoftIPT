@@ -11,13 +11,6 @@ require 'test_helper'
     sensorH = SensorHistory.new
     assert_not sensorH.save
   end
-
-  
-  test "should not save sensor without id" do
-    sensorH = sensor_histories(:two)
-    assert_not sensorH.save
-  end
-
   
   test "should not save sensor without value" do
     sensorH = sensor_histories(:three)

@@ -1,23 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 one:
-  id: 503
   value: 10
   time: 2018-11-28 16:20:09
   sensors_id: 1
-two:
-  value: 20
-  time: 2018-11-28 16:20:09
-  sensors_id: 1
 three:
-  id: 504
   time: 2018-11-28 16:20:09
   sensors_id: 1
 four:
-  id: 505
   value: 20
   sensors_id: 1
 five:
-  id: 506
   value: 20
   time: 2018-11-28 16:20:09
 
