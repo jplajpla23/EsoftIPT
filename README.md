@@ -1,7 +1,7 @@
 # LogSensor
 
 
-[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
+[![Build Status](https://travis-ci.org/jplajpla23/EsoftIPT.svg?branch=master2)](https://travis-ci.org/jplajpla23/EsoftIPT)
 
 A openSource-platform to configure SMTP alerts from any sensor.
 
