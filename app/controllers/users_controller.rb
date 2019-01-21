@@ -105,7 +105,6 @@ class UsersController < ApplicationController
 
   end
 
-
   def logout
     session.delete(:user_id)
     redirect_to home_path
