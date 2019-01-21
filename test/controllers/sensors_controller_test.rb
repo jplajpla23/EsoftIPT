@@ -16,13 +16,13 @@ require 'test_helper'
   end
 
   test "should update sensor" do
-    sensor= Sensor.find(sensors(:one))
+    sensor= Sensor.last
     sensor.min=10
     assert sensor.save
   end
 
   test "should delete sensor" do
-    sensor= Sensor.find(sensors(:one))
+    sensor= Sensor.last
     assert sensor.destroy!
   end
 
