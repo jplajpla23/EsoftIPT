@@ -4,4 +4,10 @@ require 'test_helper'
     get sensors_index_url
     assert_response :success
   end
+
+  test "should not save sensor without nothing" do
+    sensor = Sensor.new
+    assert_not sensor.save
+  end
+
  end
