@@ -1,15 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 one:
-  id: 1
+  id: 500
   value: 10
   time: 2018-11-28 16:20:09
 two:
   value: 20
   time: 2018-11-28 16:20:09
 three:
-  id: 1
+  id: 501
   time: 2018-11-28 16:20:09
 four:
-  id: 1
+  id: 502
   value: 20
 
