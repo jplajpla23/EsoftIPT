@@ -3,19 +3,19 @@ one:
   id: 503
   value: 10
   time: 2018-11-28 16:20:09
-  sensor_id: 1
+  sensors_id: 1
 two:
   value: 20
   time: 2018-11-28 16:20:09
-  sensor_id: 1
+  sensors_id: 1
 three:
   id: 504
   time: 2018-11-28 16:20:09
-  sensor_id: 1
+  sensors_id: 1
 four:
   id: 505
   value: 20
-  sensor_id: 1
+  sensors_id: 1
 five:
   id: 506
   value: 20
