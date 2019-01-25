@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Erro Login Passwords</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Erro</th>
+      <th>Mensagem</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @erro_login_passwords.each do |erro_login_password| %>
+      <tr>
+        <td><%= erro_login_password.id %></td>
+        <td><%= erro_login_password.erro %></td>
+        <td><%= erro_login_password.mensagem %></td>
+        <td><%= link_to 'Show', erro_login_password %></td>
+        <td><%= link_to 'Edit', edit_erro_login_password_path(erro_login_password) %></td>
+        <td><%= link_to 'Destroy', erro_login_password, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Erro Login Password', new_erro_login_password_path %>

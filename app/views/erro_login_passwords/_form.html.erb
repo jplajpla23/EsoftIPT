@@ -1,0 +1,32 @@
+<%= form_with(model: erro_login_password, local: true) do |form| %>
+  <% if erro_login_password.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(erro_login_password.errors.count, "error") %> prohibited this erro_login_password from being saved:</h2>
+
+      <ul>
+      <% erro_login_password.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :id %>
+    <%= form.number_field :id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :erro %>
+    <%= form.text_field :erro %>
+  </div>
+
+  <div class="field">
+    <%= form.label :mensagem %>
+    <%= form.text_field :mensagem %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
