@@ -84,33 +84,30 @@ class UsersController < ApplicationController
     end
     @users = User.all
   end
+  
   def login
     if(session[:user_id] ==nil)
 
       render 'users/login'
     end
   end
-
+=begin
+ Chamar rota do erro  
+=end
   def loginCheck
-    if(session[:user_id] ==nil)
-
-      @user = User.find_by_email(params[:email])
-      if (session[:password] ==nil )
-        redirect_to error_path
-      else
-        if @user.password == params[:password]
-          session[:user_id] = @user.id
-          redirect_to home_path
+      if(session[:user_id] ==nil || session[:password] ==nil )   
+          redirect_to erroLogin_path
         else
-          redirect_to login_path
-        end
+            @user = User.find_by_email(params[:email])
+            if @user.password == params[:password]
+                session[:user_id] = @user.id
+                redirect_to home_path
+            else
+                redirect_to login_path
+            end
+         end
       end
-        
-      end
-    end
-
-  end
-
+   end
 
   def logout
     session.delete(:user_id)
