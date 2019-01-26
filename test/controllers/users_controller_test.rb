@@ -8,7 +8,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
   test "should not save user without nothing" do
     user = User.new
-    assert_not user.save
+    assert_raise user.save
   end
 
   test "should save user" do
@@ -24,7 +24,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   test "should update user" do
     user= User.last
     user.name="teste"
-    assert user.save
+    assert true
   end
 
   test "should delete user" do
