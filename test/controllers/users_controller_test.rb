@@ -32,9 +32,9 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     groups=Group.where(user_id: user.id)
     groups.each do |i| 
       sensors=Sensor.where(groups_id: i.id)
-      sensors.destroy!
+      sensors.destroy_all!
     end
-    groups.destroy!
+    groups.destroy_all!
    assert user.destroy!
   end
 
