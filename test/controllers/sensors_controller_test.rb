@@ -18,7 +18,7 @@ require 'test_helper'
     sensor.mac="61-A3-F5-45-50-8B"
     sensor.max="12"
     sensor.min="1"
-    sensor.groups_id="1"
+    sensor.groups_id=groups(:one)
     assert sensor.save
   end
 
