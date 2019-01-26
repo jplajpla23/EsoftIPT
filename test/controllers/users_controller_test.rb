@@ -25,7 +25,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   test "should update user" do
     user= User.last
     user.name="teste"
-    assert user.save
+    assert_not user.save
   end
 
   test "should delete user" do
