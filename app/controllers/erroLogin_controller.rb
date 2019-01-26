@@ -4,18 +4,24 @@ class ErroLoginController < ApplicationController
   # GET /erro_login
   # GET /erro_login.json
   def index
-    @erro_login = ErroLogin.all
+    @erro_login = Erro_Login.new
   end
-
+  
+  
+    
   # GET /erro_login/new
   def new
-    @erro_login = ErroLogin.new
+    if session[:user_id]==nil
+      render "erroLogin_controller/index"
+      return
+    end
+    
   end
 
   # POST /erro_login
   # POST /erro_login.json
   def create
-    @erro_login = ErroLogin.new(erro_login_params)
+    @erro_login = Erro_Login.new(erro_login_params)
 
     respond_to do |format|
       if @erro_login.save
