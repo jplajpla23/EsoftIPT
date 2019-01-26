@@ -2,10 +2,10 @@
 
 one:
   id: 1
-  erro: MyString
-  mensagem: MyString
+  pagina: Login
+  erro: Erro de login
 
 two:
-  id: 1
-  erro: MyString
-  mensagem: MyString
+  id: 2
+  pagina: Registo
+  erro: Erro de registo
