@@ -13,12 +13,11 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should save user" do
-    user = users(:one)
     user = User.new
     user.role=0
-    user.name="NomedeTeste"
-    user.email="teste@example.com"
-    user.password_digest="$2a$10$ffDUdeiDgIOh3bHcGvWAo.bFyJ0SAVcz5OPQdBkJADzV5Qz/BGwKa"
+    user.name="joaoAgostinho"
+    user.email="teste@teste.com"
+    user.password="123123213"
     assert user.save
   end
 
