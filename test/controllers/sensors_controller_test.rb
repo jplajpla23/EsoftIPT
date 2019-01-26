@@ -12,6 +12,13 @@ require 'test_helper'
 
   test "should save sensor" do
     sensor = sensors(:one)
+    sensor=Sensor.new
+    sensor.idusers=users(:one)
+    sensor.sensor_desc="des"
+    sensor.mac="61-A3-F5-45-50-8B"
+    sensor.max="12"
+    sensor.min="1"
+    sensor.groups_id="1"
     assert sensor.save
   end
 

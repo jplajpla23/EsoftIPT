@@ -13,6 +13,11 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
   test "should save user" do
     user = users(:one)
+    user = User.new
+     user.role=0
+      user.name="NomedeTeste"
+      user.email="teste@example.com"
+      user.password="123123123"
     assert user.save
   end
 
@@ -24,7 +29,13 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
   test "should delete user" do
     user= User.last
-    assert user.destroy!
+    groups=Group.where(user_id: user.id)
+    groups.each do |i| 
+      sensors=Sensor.where(groups_id: i.id)
+      sensors.destroy!
+    end
+    groups.destroy!
+   assert user.destroy!
   end
 
 end
