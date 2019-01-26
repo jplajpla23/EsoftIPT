@@ -6,7 +6,7 @@ class User < ApplicationRecord
 	validates :role, presence: true
 	validates :email, presence: true, uniqueness: { case_sensitive: false }
 	validates :name, presence: true, length: {maximum: 50}, format: { with: /\A[a-zA-Z]+\z/ }
-	validates :password_digest, presence: true
+	validates :password_digest, presence: true,length: {maximum: 6}
 	
 	def password
 		@password ||= Password.new(password_digest)
