@@ -1,2 +1,0 @@
-class ErroLoginPassword < ApplicationRecord
-end
