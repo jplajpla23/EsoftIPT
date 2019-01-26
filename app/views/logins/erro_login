@@ -5,10 +5,5 @@
   <%= @erro_login.erro %>
 </p>
 
-<p>
-  <strong>Password:</strong>
-  <%= @login.password %>
-</p>
-
-<%= link_to 'Edit', edit_login_path(@login) %> |
+<%= link_to 'Erro', erro_login_path(@erro_login) %> |
 <%= link_to 'Back', logins_path %>

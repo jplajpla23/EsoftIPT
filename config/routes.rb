@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
   #get 'authentication_controller/authenticate'
   #post 'authenticate', to: 'authentication#authenticate'
+  resources :users, controller: '/erro_login'
   get '/login', to: 'users#login', as: 'login'
   post '/login', to: 'users#loginCheck', as: 'loginSend'
-  get '/users#loginCheck/', to: '/erro_login#index'
+  get '/users#loginCheck', to: '/erro_login#index'
   get '/logout', to: 'users#logout', as: 'logout'
   get '/register', to: 'users#register', as: 'register'
   post '/register', to: 'users#registerSave', as: 'registerSave'

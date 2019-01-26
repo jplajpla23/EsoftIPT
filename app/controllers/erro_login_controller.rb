@@ -1,4 +1,4 @@
-class ErroLoginPasswordsController < ApplicationController
+class ErroLoginController < ApplicationController
   before_action :set_erro_login, only: [:show, :destroy]
 
   # GET /erro_login

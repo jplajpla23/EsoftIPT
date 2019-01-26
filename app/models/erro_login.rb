@@ -1,4 +1,7 @@
 class ErroLogin < ApplicationRecord
+  def id
+    
+  end
   
   def pagina
     
