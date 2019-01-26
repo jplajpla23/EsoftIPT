@@ -9,7 +9,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   test "should not save user without nothing" do
     user = User.new
     user.password="teste"
-    assert_not user.save
+    assert_not user.valid?
   end
 
   test "should save user" do
