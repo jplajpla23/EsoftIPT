@@ -6,10 +6,11 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_response :redirect
   end
 
- # test "should not save user without nothing" do
-  #  user = User.new
-  #  assert_raise user.save
- # end
+  test "should not save user without nothing" do
+    user = User.new
+    user.password="teste"
+    assert_raise user.save
+  end
 
   test "should save user" do
     user = users(:one)
