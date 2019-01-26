@@ -12,18 +12,18 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_not user.valid?
   end
 
-  test "should save user" do
+  test "save user" do
 
     user = User.new
     user.role=0
     user.name="joaoAgostinho"
-    user.email="teste@teste.com"
+    user.email="jplajpla23@gmail.com"
     user.password="123123213"
-    assert user.save
+    assert_not user.save
   end
 
   test "should update user" do
-    user= User.last
+    user= user(:one)
     user.name="teste"
     assert user.save
   end

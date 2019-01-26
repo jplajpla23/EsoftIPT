@@ -13,10 +13,11 @@ class GroupsControllerTest < ActionDispatch::IntegrationTest
   sensors.destroy_all
   assert group.destroy!
 end
+
 test "new group" do
     s = Group.new
-    s.user_id=users(:one)
-    s.description="teste create"
+    s.user_id= User.last.id
+    s.description="testeCreate"
     assert s.save
 end
 
