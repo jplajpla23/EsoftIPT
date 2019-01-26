@@ -1,21 +1,19 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Erro Login Passwords</h1>
+<h1>Erro Login </h1>
 
 <table>
   <thead>
     <tr>
-      <th>Id</th>
+      <th>Página</th>
       <th>Erro</th>
-      <th>Mensagem</th>
-      <th colspan="3"></th>
+      <th colspan="2"></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @erro_login_passwords.each do |erro_login_password| %>
+    <% @erroLogin do |:id == 1| %>
       <tr>
-        <td><%= erroLogin.id %></td>
         <td><%= erroLogin.pagina %></td>
         <td><%= erroLogin.erro %></td>
         <td><%= link_to 'Voltar', erroLogin, method: :voltar, data: { confirm: 'Voltar ?' } %></td>

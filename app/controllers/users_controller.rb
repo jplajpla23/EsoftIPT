@@ -96,12 +96,7 @@ class UsersController < ApplicationController
 =end
   def loginCheck
       if(session[:user_id] ==nil || session[:password] ==nil )
-        begin   
-        rescue
-          erb :name, :email, locals: {
-            error_message "Erro de login, tente outra vez!!"
-          }
-        end
+        
         else
             @user = User.find_by_email(params[:email])
             if @user.password == params[:password]

@@ -1,8 +1,0 @@
-<p id="notice"><%= @erroLogin.pagina >%</p>
-
-<p>
-  <strong>Erro</strong>
-  <%= @erroLogin.erro %>
-</p>
- |
-<%= link_to 'Back', logins_path %>
