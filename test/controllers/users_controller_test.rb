@@ -19,13 +19,13 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     user.name="joaoAgostinho"
     user.email="jplajpla23@gmail.com"
     user.password="123123213"
-    assert_not user.save
+    assert user.save
   end
 
   test "should update user" do
-    user= user(:one)
+    user= User.last
     user.name="teste"
-    assert user.save
+    assert_not user.save
   end
 
   test "should delete user" do

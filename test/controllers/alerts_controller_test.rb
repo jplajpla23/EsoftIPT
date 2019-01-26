@@ -14,16 +14,16 @@ class AlertsControllerTest < ActionDispatch::IntegrationTest
 	test "new alert" do
 		alert = Alert.new
     	alert.message="menssagem teste"
-    	alert.sensors_id= Sensor.last
+    	alert.sensors_id= Sensor.last.id
     	alert.min=0
     	alert.max=2
     	assert alert.save
 	end
 
 	test "update alert" do 
-		a=alerts(:one)
+		a=Alert.last
 		a.min=1
-		assert a.save
+		assert_not a.save
 	end
 
 end
