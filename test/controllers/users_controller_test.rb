@@ -23,7 +23,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update user" do
-    user= user(:one)
+    user= User.last
     user.name="teste"
     assert user.save
   end
