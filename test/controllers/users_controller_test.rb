@@ -13,6 +13,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should save user" do
+    
     user = User.new
     user.role=0
     user.name="joaoAgostinho"
