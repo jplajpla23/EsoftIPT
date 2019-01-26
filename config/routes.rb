@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   #post 'authenticate', to: 'authentication#authenticate'
   get '/login', to: 'users#login', as: 'login'
   post '/login', to: 'users#loginCheck', as: 'loginSend'
-  get '/users#loginCheck/:error', to: '/erro_login_passwords#index'
+  get '/users#loginCheck/:error', to: '/erro_login#index'
   get '/logout', to: 'users#logout', as: 'logout'
   get '/register', to: 'users#register', as: 'register'
   post '/register', to: 'users#registerSave', as: 'registerSave'
