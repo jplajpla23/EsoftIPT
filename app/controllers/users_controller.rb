@@ -95,11 +95,17 @@ class UsersController < ApplicationController
     if(session[:user_id] ==nil)
 
       @user = User.find_by_email(params[:email])
-      if @user.password == params[:password]
-        session[:user_id] = @user.id
-        redirect_to home_path
+      if (session[:password] ==nil )
+        redirect_to error_path
       else
-        redirect_to login_path
+        if @user.password == params[:password]
+          session[:user_id] = @user.id
+          redirect_to home_path
+        else
+          redirect_to login_path
+        end
+      end
+        
       end
     end
 
@@ -132,8 +138,4 @@ class UsersController < ApplicationController
 
       redirect_to login_path
     end
-
   end
-
-
-end
