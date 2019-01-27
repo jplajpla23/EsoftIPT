@@ -135,4 +135,12 @@ class UsersController < ApplicationController
 
       redirect_to login_path
     end
+  def create
+    User.create(users_params)
+   end
+  end
+  private  
+  
+  def users_params
+    params.require(:user).permit(:id,:name,:email,:groups_id,:idusers,:password,:role,:sensors_id)
   end
