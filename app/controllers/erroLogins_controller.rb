@@ -4,7 +4,11 @@ class ErroLoginController < ApplicationController
   # GET /erro_login
   # GET /erro_login.json
   def show
-    @erroLogin = erroLogin.new
+    redirect_to erroLogin_path
+  end
+  
+  def create
+    ErroLogin.create(erroLogin_params)   
   end
   
   # GET /erro_login/new

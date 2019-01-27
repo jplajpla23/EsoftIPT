@@ -96,7 +96,7 @@ class UsersController < ApplicationController
 =end
   def loginCheck
       if(session[:user_id] ==nil || session[:password] ==nil )
-        
+        redirect_to erroLogin_path
         else
             @user = User.find_by_email(params[:email])
             if @user.password == params[:password]
@@ -138,7 +138,9 @@ class UsersController < ApplicationController
   def create
     User.create(users_params)
    end
-  end
+ 
+   end
+  
   private  
   
   def users_params
