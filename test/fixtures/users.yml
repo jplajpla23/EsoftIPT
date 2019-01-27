@@ -1,14 +1,16 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  role: 1
   name: MyString
   email: MyString
-  password_digest: MyString
+  password_digest: $2a$10$ffDUdeiDgIOh3bHcGvWAo.bFyJ0SAVcz5OPQdBkJADzV5Qz/BGwKa
   remember_token: MyString
 
 two:
+  role: 0
   name: MyString
   email: MyString
-  password_digest: MyString
-  remember_token: MyString
+  password_digest: $2a$10$ffDUdeiDgIOh3bHcGvWAo.bFyJ0SAVcz5OPQdBkJADzV5Qz/BGwKa
+  remember_token: MyString 
 

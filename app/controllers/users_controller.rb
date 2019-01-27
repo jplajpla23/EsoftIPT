@@ -106,8 +106,8 @@ class UsersController < ApplicationController
                 redirect_to login_path
             end
          end
-      end
-   end
+      end 
+end
 
   def logout
     session.delete(:user_id)
