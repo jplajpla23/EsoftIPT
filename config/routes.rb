@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get '/register', to: 'users#register', as: 'register'
   post '/register', to: 'users#registerSave', as: 'registerSave'
   get '/', to: 'users#indexLogSensor', as: 'home'
+  get '/erroLogins', to: 'erroLogins#LoginCheck', as: 'errosLogin'
   #####################Group Routes#############################################
   get '/myGroups', to: 'groups#all', as: 'mygroups'
   post '/myGroupsSave', to: 'groups#new', as: 'saveNewGroup'

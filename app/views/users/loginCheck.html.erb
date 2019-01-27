@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Erro Login </h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Página</th>
+      <th>Erro</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+  	<div>
+  		<a href="<%= erroLogin_path()>">
+  	</div>
+    <% @erroLogin do |:id == 1| %>
+      <tr>
+        <td><%= erroLogin.pagina %></td>
+        <td><%= erroLogin.erro %></td>
+        <td><%= link_to 'Voltar', erroLogin, method: :voltar, data: { confirm: 'Voltar ?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
