@@ -8,6 +8,10 @@ class User < ApplicationRecord
 	validates :name, presence: true, length: {maximum: 50}, format: { with: /\A[a-zA-Z]+\z/ }
 	validates :password_digest, presence: true
 	
+	def erro
+	  @erro ||= erro_login.new("Pagina","Erro")
+	end
+	
 	def password
 		@password ||= Password.new(password_digest)
 	end

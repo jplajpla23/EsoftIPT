@@ -6,6 +6,7 @@
         <th>Valor</th>
         <th>Tempo</th>
         <th>Sensor History Col</th>
+        <th>Last Creation Date ago</th>
     </tr>
 </thead>
 <tbody>
@@ -14,7 +15,8 @@
             <td><%= history.sensors_idsensors %></td>
             <td><%= history.value %></td>
             <td><%= history.time %></td>
-            <td><%= history.sensors_historycol %></td>
+            <td>history.sensors_historycol %></td>
+            <td><%= time_ago_in_words history.created_at%></td>
         </tr>
     <% end %>
     </tbody>

@@ -2,7 +2,7 @@ class SensorHistorysController < ApplicationController
     def show
         #verificar primeiro se o senssor e do user que esta autenticado
         @sensor=Sensor.find(params[:id])
-        @sensor_history=@sensor.SensorHistory.all
+        @sensor_history=@sensor.SensorHistory.order(created_at: :desc).all
         render plain: "nao implementado"
     end
     #  def new

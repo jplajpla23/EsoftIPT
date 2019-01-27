@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id: 1
+  pagina: Login
+  erro: Erro de login
+
+two:
+  id: 2
+  pagina: Registo
+  erro: Erro de registo

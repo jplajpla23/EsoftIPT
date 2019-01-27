@@ -7,6 +7,10 @@ class LoginsController < ApplicationController
     @logins = Login.all
   end
 
+  def erro
+    
+  end
+  
   # GET /logins/1
   # GET /logins/1.json
   def show
